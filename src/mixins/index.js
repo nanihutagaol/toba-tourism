@@ -1,10 +1,10 @@
 export default {
-	data () {
-		return {
-		}
-	},
-	mounted () {
-	},
-	methods: {		
-	}
+  data () {
+    return {
+    }
+  },
+  mounted () {
+  },
+  methods: {
+  }
 }
