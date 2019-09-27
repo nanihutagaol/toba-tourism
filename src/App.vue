@@ -8,11 +8,6 @@
 <script>
 export default {
   name: 'App',
-  data () {
-    return {
-      env: process.env.NODE_ENV
-    }
-  }
 }
 </script>
 
