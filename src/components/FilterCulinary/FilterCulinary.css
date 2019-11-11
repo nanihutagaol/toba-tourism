@@ -1,0 +1,23 @@
+.FilterKuliner {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.filter-title {
+  background-color: cornflowerblue;
+  color: white;
+  padding: 1em;
+}
+.filter-content {
+  padding: 15px 15px 0 15px;
+}
+.filter-button {
+  padding: 15px;
+}
+.filter-name {
+  vertical-align: center;
+  font-size: 16px;
+}
+.filter-checkbox {
+  width: 18px;
+  height: 18px;
+  vertical-align: center;
+}

@@ -1,0 +1,14 @@
+.culinary-title-group {
+  padding: 3em 0;
+}
+.culinary-add-button {
+  text-align: right;
+}
+.list-culinary{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+button {
+  min-width: 90px;
+  border-radius: 0.75em;
+}
