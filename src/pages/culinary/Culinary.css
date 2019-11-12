@@ -1,14 +1,24 @@
-.culinary-title-group {
-  padding: 3em 0;
-}
 .culinary-add-button {
   text-align: right;
-}
-.list-culinary{
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 button {
   min-width: 90px;
   border-radius: 0.75em;
+}
+
+.fa-plus {
+  background: forestgreen;
+  padding: 0.5em;
+  border-radius: 1em;
+  font-size: 12px;
+}
+
+.culinary-row {
+  width: 100%;
+  margin-top: 1em;
+}
+
+
+.food-cart {
+  margin-bottom: 1em;
 }
