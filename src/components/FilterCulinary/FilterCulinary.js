@@ -24,8 +24,12 @@ export default {
       return list
     },
     onCheckRestaurant (restaurant) {
-      restaurant.isActive = !restaurant.isActive
-      this.$emit('onFilterByName', restaurant)
+      this.listOfRestaurant.forEach(function (list) {
+        if (list.restaurantId == restaurant.restaurantId) {
+          list.isActive = !list.isActive
+        }
+      })
+      this.$emit('onFilterByName', this.listOfRestaurant)
     }
   }
 }
