@@ -1,29 +1,59 @@
-import Vue from 'vue'
+import Axios from 'axios'
 
 export default {
   state: {
-    restaurantList: []
+    restaurantList: [],
+    restaurantFiltered: [],
+    isFilterActive: false
   },
   getters: {
-    restaurant: state => {
+    restaurantList: state => {
       return state.restaurantList
+    },
+    restaurantFiltered: state => {
+      return state.restaurantFiltered
+    },
+    isFilterActive: state => {
+      return state.isFilterActive
     }
   },
   mutations: {
-    setCulinary: (state, payload) => {
+    setRestaurantList: (state, payload) => {
       state.restaurantList = payload
+    },
+    setRestaurantFiltered: (state, payload) => {
+      state.restaurantFiltered = payload
+    },
+    setIsFilterActive: (state, payload) => {
+      state.isFilterActive = payload
     }
   },
   actions: {
-    getCulinary ({commit}) {
-      Vue.http
-        .get('/backend/api/get-all-culinary')
+    getRestaurantList ({commit}) {
+      Axios
+        .get('http://demo8100119.mockable.io/toba-tourism/restoran')
         .then(response => {
-          commit('setCulinary', response.data.culinaryList)
-          console.log(response.data.culinaryList)
+          commit('setRestaurantList', response.data.data)
         }).catch((e) => {
           console.log(e)
         })
+    },
+    addRestaurant ({commit, dispatch}, restaurant) {
+      Axios
+        .post('http://demo8100119.mockable.io/toba-tourism/restoran')
+        .then(response => {
+          console.log('success')
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    onsetRestaurantFiltered ({commit}, restaurants) {
+      commit('setRestaurantFiltered', restaurants)
+      commit('setIsFilterActive', true)
+      console.log('waw')
+    },
+    onSetIsFilterActive ({commit}) {
+      commit('setIsFilterActive', true)
     }
   }
 }

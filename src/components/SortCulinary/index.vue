@@ -8,7 +8,7 @@
             :value="criteria.sortParam+criteria.type"
             type="radio"
             name="listOfSort"
-            :checked="criteria.isActive" @click="onSortBy(criteria)"/>
+            :checked="criteria.isActive" @click="onClickedSort(criteria)"/>
           <span class="filter-name">{{ criteria.sortName}}</span>
         </div>
       </div>

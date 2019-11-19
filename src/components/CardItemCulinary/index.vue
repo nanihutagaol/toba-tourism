@@ -1,9 +1,13 @@
 <template>
-  <div class="culinary">
-    <img :src="food.foodImage" alt="altText" class="card-culinary">
-    <div class="culinary-caption">
-      <div class="culinary-price">Rp {{food.foodPrice}}/orang</div>
-      <div class="culinary-name">{{food.foodName}}</div>
+  <div class="card-item">
+    <div class="card-img">
+      <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/6d/af/ea/restaurant-papalada.jpg"
+           alt="altText" class="card-culinary">
+    </div>
+    <div class="card-description">
+      <div class="card-title">Title</div>
+      <div class="card-caption1">5000/orang</div>
+      <div class="card-caption2">booking-first</div>
       <div class="culinary-button">
         <button class="btn btn-primary">Edit</button>
         <button class="btn btn-danger">Hapus</button>
@@ -16,18 +20,18 @@
 export default {
   name: 'CardCulinary',
   props: {
-    food: {
-      foodImage: {
+    kuliner: {
+      kuliner_gambar: {
         type: String,
         default: 'https://cdn.idntimes.com/content-images/community/2017/12/babi-panggang-1024x683-3f219d4c8f75b5d95b81c33d967b3836_600x400.jpg'
       },
-      foodPrice: {
+      kuliner_harga: {
         type: String,
-        default: 'foodPrice'
+        default: 'harga'
       },
-      foodName: {
+      kuliner_nama: {
         type: String,
-        default: 'foodName'
+        default: 'nama'
       }
     }
   }

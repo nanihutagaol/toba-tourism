@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    onSortBy (criteria) {
+    onClickedSort (criteria) {
       let self = this
       criteria.isActive = true
 
@@ -38,7 +38,7 @@ export default {
         type: criteria.type
       }
 
-      this.$emit('onSortBy', this.selectedSort)
+      this.$emit('onClickedSort', this.selectedSort)
     },
   }
 }
