@@ -4,6 +4,7 @@ import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
 import CardItemRestaurant from '@/components/CardItemRestaurant'
 import RestaurantForm from '@/components/restaurantForm'
+import ModalForm from '@/components/Modal'
 
 export default {
   name: 'Restaurant',
@@ -12,11 +13,14 @@ export default {
     FilterCulinary,
     SortCulinary,
     CardItemRestaurant,
-    RestaurantForm
+    RestaurantForm,
+    ModalForm
   },
   data () {
     return {
-      isAddButtonActive: false
+      showRestaurantForm: false,
+      restaurant: '',
+      isShowAlert: true
     }
   },
   created () {
@@ -33,18 +37,22 @@ export default {
     }
   },
   methods: {
+    onAlertClose () {
+      this.isShowAlert = false
+    },
     getRestaurants () {
       this.$store.dispatch('getRestaurantList')
     },
-    activateAddButton () {
-      this.isAddButtonActive = true
+    showTheForm () {
+      this.showRestaurantForm = true
     },
-    switchOffAddButton () {
-      this.isAddButtonActive = false
+    hideTheForm () {
+      this.showRestaurantForm = false
+      this.restaurant = ''
     },
     reCallRestaurants () {
       this.getRestaurants()
-      this.switchOffAddButton();
+      this.hideTheForm();
     },
     sortRestaurantByName (restaurantList, type) {
       console.log(restaurantList)
@@ -54,6 +62,15 @@ export default {
         else
           return b.restoran_nama - a.restoran_nama
       })
+    },
+    onEditRestaurant (restaurant) {
+      console.log(restaurant.restoran_id)
+      this.restaurant = restaurant
+      this.showTheForm()
+    },
+    onDeleteRestaurant (restaurant) {
+      console.log(restaurant.index)
+      this.$store.dispatch('deleteRestaurant', restaurant)
     }
   }
 }
