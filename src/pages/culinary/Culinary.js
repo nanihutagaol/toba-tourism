@@ -2,7 +2,7 @@ import { mapGetters } from 'vuex'
 import BannerCategory from '@/components/BannerCategory'
 import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
-import CardCulinary from '@/components/CardCulinary'
+import CardItemCulinary from '@/components/CardItemCulinary'
 
 export default {
   name: 'Culinary',
@@ -10,32 +10,33 @@ export default {
     BannerCategory,
     FilterCulinary,
     SortCulinary,
-    CardCulinary
+    CardItemCulinary
   },
   data () {
     return {
     }
   },
   created () {
-    this.$store.dispatch('getRestaurantList')
+    this.$store.dispatch('getCulinaryList')
   },
   computed: {
     ...mapGetters([
-      'restaurantList', 'restaurantFiltered', 'isFilterActive'
+      'culinaryList', 'culinaryFiltered', 'isCulinaryFilterActive'
     ]),
     filteredRestaurantList () {
-      if (this.isFilterActive === true){
-        return this.restaurantFiltered
+      console.log(this.culinaryList)
+      if (this.isFilterActive === true) {
+        return this.culinaryFiltered
       } else {
-        return this.restaurantList
+        return this.culinaryList
       }
     }
   },
   methods: {
     onFilterByName (selectedName) {
       let restaurantList = [...this.restaurantList]
-      let restaurants = this.filterByRestaurantName(restaurantList, selectedName)
-      this.$store.dispatch('onSetRestaurantFiltered', restaurants)
+      let filteredRestaurants = this.filterByRestaurantName(restaurantList, selectedName)
+      this.$store.dispatch('onsetRestaurantFiltered', filteredRestaurants)
     },
     filterByRestaurantName (restaurantList, selectedName) {
       let out = [];
@@ -51,16 +52,47 @@ export default {
 
       return out;
     },
-    onSortBy(criteria) {
-      console.log(criteria)
+    onSort(criteria) {
+      let restaurantList = []
+      let sortedRestaurants = []
+
+      if (this.isFilterActive === true) {
+        restaurantList = [...this.restaurantFiltered]
+      } else {
+        restaurantList = [...this.restaurantList]
+      }
+
+      sortedRestaurants = this.doSortByCriteria(restaurantList, criteria)
+
+      console.log(sortedRestaurants)
+      this.$store.dispatch('onsetRestaurantFiltered', sortedRestaurants)
+    },
+    groupFoodList (restaurantsList) {
+    },
+    doSortByCriteria (restaurantList, criteria) {
+      let sorted = []
+      if (criteria.param === 'name') {
+        sorted = this.sortByName(restaurantList, criteria.type)
+      } else if (criteria.param === 'price') {
+        sorted = this.sortByPrice(restaurantList, criteria.type)
+      }
+      return sorted;
+    },
+    sortByName (restaurantList, type) {
+      return restaurantList.sort((a, b) => {
+        if (type === 'asc')
+          return a.foodName - b.foodName
+        else
+          return b.foodName - a.foodName
+      })
     },
     sortByPrice (restaurantList, type) {
       return restaurantList.sort((a, b) => {
         if (type === 'asc')
-          return a.offerFare - b.offerFare
+          return a.foodPrice - b.foodPrice
         else
-          return b.offerFare - a.offerFare
+          return b.foodPrice - a.foodPrice
       })
-    },
+    }
   }
 }

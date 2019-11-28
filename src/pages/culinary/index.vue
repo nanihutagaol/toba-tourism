@@ -1,48 +1,43 @@
 <template>
   <div class="culinary-by-admin">
-    <BannerCategory/>
+    <BannerCategory bannerCaption="Kuliner Populer"/>
 
     <div class="container">
       <div class="row">
-        <div class="culinary-row">
-          <h1>
-            Kuliner Populer
-          </h1>
-        </div>
 
-        <div class="culinary-row culinary-add-button">
-          <div class="row">
-            <div class="col-sm-3">
-            </div>
+<!--        <div class="culinary-row culinary-add-button">-->
+<!--          <div class="row">-->
+<!--            <div class="col-sm-3">-->
+<!--            </div>-->
 
-            <div class="col-sm-9">
-              <button class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
-            </div>
-          </div>
-        </div>
+<!--            <div class="col-sm-9">-->
+<!--              <button class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="culinary-row">
           <div class="row">
             <div class="col-sm-3">
               <div style="margin-bottom: 1em">
                 <SortCulinary
-                  @onSortBy="onSortBy"
+                  @onClickedSort="onSort"
                 />
               </div>
 
               <div>
                 <FilterCulinary
-                  :restaurantList="restaurantList"
+                  :culinaryList="culinaryList"
                   @onFilterByName="onFilterByName"
                 />
               </div>
             </div>
 
-            <div class="col-sm-9">
-              <div class="row" v-for="restaurant in filteredRestaurantList" :key="restaurant.restaurantId">
-                <div class="col-sm-4 food-cart" v-for="food in restaurant.foodList" :key="food.foodId">
+            <div class="col-sm-9" >
+              <div class="" v-for="restoran in filteredRestaurantList" :key="restoran.restoran_id">
+                <div class="col-sm-4 food-cart" v-for="kuliner in restoran.kuliner_list" :key="kuliner.kuliner_id">
                   <div class="">
-                    <CardCulinary :food="food"/>
+                    <CardItemCulinary :restaurant="restoran" :culinary="kuliner"/>
                   </div>
                 </div>
               </div>
