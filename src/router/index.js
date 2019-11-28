@@ -8,9 +8,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: () => import('@/components/HelloWorld')
+      path: '/kuliner',
+      name: 'KulinerCustomer',
+      component: () => import('@/pages/culinary')
+    },
+    {
+      path: '/restoran',
+      name: 'Restaurant',
+      component: () => import('@/pages/restaurant')
     }
   ]
 })

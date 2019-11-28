@@ -1,0 +1,23 @@
+.culinary-add-button {
+  text-align: right;
+}
+button {
+  min-width: 90px;
+  border-radius: 0.75em;
+}
+
+.fa-plus {
+  background: forestgreen;
+  padding: 0.5em;
+  border-radius: 1em;
+  font-size: 12px;
+}
+
+.culinary-row {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.food-cart {
+  margin-bottom: 1em;
+}
