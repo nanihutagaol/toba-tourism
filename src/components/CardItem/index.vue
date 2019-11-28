@@ -5,11 +5,12 @@
     </div>
     <div class="card-description">
       <div class="card-title">{{title}}</div>
-      <div class="card-caption">{{caption1}}</div>
-      <div class="card-caption">{{caption2}}</div>
+      <div class="card-caption"><slot name="caption1"></slot>{{caption1}}</div>
+      <div class="card-caption"><slot name="caption2"></slot>{{caption2}}</div>
+      <div class="card-caption"><slot name="caption3"></slot>{{caption3}}</div>
       <div class="card-button">
-        <button class="btn toba-btn-info">Edit</button>
-        <button class="btn toba-btn-danger">Hapus</button>
+        <button class="btn toba-btn-info" @click="onClickEdit">Edit</button>
+        <button class="btn toba-btn-danger" @click="onClickDelete">Hapus</button>
       </div>
     </div>
   </div>
@@ -30,6 +31,17 @@ export default {
     },
     caption2: {
       type: String
+    },
+    caption3: {
+      type: String
+    }
+  },
+  methods: {
+    onClickEdit () {
+      this.$emit('onClickEdit')
+    },
+    onClickDelete () {
+      this.$emit('onClickDelete')
     }
   }
 }
@@ -56,7 +68,9 @@ export default {
   }
   .card-caption {
     font-size: 12px;
-    line-height: 1.5em;
+    line-height: 1.3em;
+    text-align: justify;
+    margin-bottom: 3px;
   }
   .card-button {
     margin-top: 0.5em;
