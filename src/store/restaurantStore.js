@@ -26,6 +26,9 @@ export default {
     },
     setIsFilterActive: (state, payload) => {
       state.isFilterActive = payload
+    },
+    deleteRestaurant: (state, payload) => {
+      state.restaurantList.splice(payload.index, 1)
     }
   },
   actions: {
@@ -33,16 +36,50 @@ export default {
       Axios
         .get('http://demo8100119.mockable.io/toba-tourism/restoran')
         .then(response => {
-          commit('setRestaurantList', response.data.data)
+          let out = []
+          let index = 0
+
+          response.data.data.forEach(function (restaurant) {
+            restaurant.index = index++
+            out.push(restaurant)
+          })
+
+          commit('setRestaurantList', out)
         }).catch((e) => {
           console.log(e)
         })
     },
     addRestaurant ({commit, dispatch}, restaurant) {
       Axios
-        .post('http://demo8100119.mockable.io/toba-tourism/restoran')
+        .post('http://demo8100119.mockable.io/toba-tourism/restoran', JSON.stringify(restaurant), {
+          'headers': {'Content-Type': 'application/json'}
+        })
         .then(response => {
           console.log('success')
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    updateRestaurant ({commit, dispatch}, restaurant) {
+      Axios
+        .post('http://demo8100119.mockable.io/toba-tourism/restoran', JSON.stringify(restaurant), {
+          'headers': {'Content-Type': 'application/json'}
+        })
+        .then(response => {
+          console.log('success')
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    deleteRestaurant ({commit, state}, restaurant) {
+      restaurant.restoranId = '{restoran_id}' // delete after real api
+      Axios
+        .delete('http://demo8100119.mockable.io/toba-tourism/restoran/' + restaurant.restoranId)
+        .then(response => {
+          if (response.data.status === 'OK') {
+            commit('deleteRestaurant', restaurant)
+            console.log('bisa dong')
+          }
         }).catch((e) => {
           console.log(e)
         })

@@ -29,20 +29,21 @@ export default {
     }
   },
   actions: {
-    getCulinaryList({commit}) {
+    getCulinaryList ({commit}) {
       Axios
         .get('http://demo8100119.mockable.io/toba-tourism/kuliner')
         .then(response => {
-          commit('setCulinaryList', response.data.culinaryList)
+          console.log(response.data.data)
+          commit('setCulinaryList', response.data.data)
         }).catch((e) => {
-        console.log(e)
-      })
+          console.log(e)
+        })
     },
     onSetCulinaryFiltered ({commit}, restaurants) {
       commit('setCulinaryFiltered', restaurants)
       commit('setIsCulinaryFilterActive', true)
     },
-    onSetIsCulinaryFilterActive({commit}) {
+    onSetIsCulinaryFilterActive ({commit}) {
       commit('setIsCulinaryFilterActive', true)
     }
   }
