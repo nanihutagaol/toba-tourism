@@ -3,7 +3,7 @@ import BannerCategory from '@/components/BannerCategory'
 import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
 import CardItemRestaurant from '@/components/CardItemRestaurant'
-import RestaurantForm from '@/components/restaurantForm'
+import RestaurantForm from '@/components/RestaurantForm'
 import ModalForm from '@/components/Modal'
 
 export default {
@@ -18,9 +18,8 @@ export default {
   },
   data () {
     return {
-      showRestaurantForm: false,
       restaurant: '',
-      isShowAlert: true
+      showModalForm: false
     }
   },
   created () {
@@ -32,27 +31,16 @@ export default {
     ]),
     sortedRestaurantList () {
       let restaurants = [...this.restaurantList]
-      console.log(restaurants)
       return this.sortRestaurantByName (restaurants,'asc')
     }
   },
   methods: {
-    onAlertClose () {
-      this.isShowAlert = false
+    onCloseModal () {
+      this.showModalForm = false
+      this.restaurant = ''
     },
     getRestaurants () {
       this.$store.dispatch('getRestaurantList')
-    },
-    showTheForm () {
-      this.showRestaurantForm = true
-    },
-    hideTheForm () {
-      this.showRestaurantForm = false
-      this.restaurant = ''
-    },
-    reCallRestaurants () {
-      this.getRestaurants()
-      this.hideTheForm();
     },
     sortRestaurantByName (restaurantList, type) {
       console.log(restaurantList)
@@ -64,9 +52,8 @@ export default {
       })
     },
     onEditRestaurant (restaurant) {
-      console.log(restaurant.restoran_id)
       this.restaurant = restaurant
-      this.showTheForm()
+      this.showModalForm = true
     },
     onDeleteRestaurant (restaurant) {
       console.log(restaurant.index)

@@ -34,7 +34,7 @@ export default {
   name: 'Modal',
   methods: {
     closeModal () {
-      this.$emit('onAlertClose')
+      this.$emit('onCloseModal')
     }
   }
 }
@@ -62,7 +62,7 @@ export default {
     transform: translate(-50%, -50%);
     width: 45%;
     margin: 40px auto 0;
-    padding: 20px 30px;
+    padding: 20px;
     background-color: #fff;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -81,7 +81,7 @@ export default {
 
   .modal-body {
     text-align: center;
-    margin-bottom: 1em;
+    padding: 0;
     /*overflow: scroll;*/
     /*height: 500px;*/
   }
