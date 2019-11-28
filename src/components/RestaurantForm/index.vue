@@ -20,8 +20,8 @@
       <input id="restoran_gambar" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
     </div>
 
-    <div class="form-group">
-      <input class="form-control btn toba-btn-success" type="submit"  value="Tambah">
+    <div class="form-group" style="margin-bottom: 0">
+      <input class="form-control btn toba-btn-success" type="submit"  :value="formData === '' ? 'Tambah' : 'Ubah'">
     </div>
   </form>
 </template>
@@ -70,7 +70,6 @@ export default {
     },
     previewFiles () {
       this.restoran.restoran_gambar = this.$refs.myFiles.files
-      console.log(this.restoran.restoran_gambar)
     }
   }
 }
@@ -78,7 +77,6 @@ export default {
 
 <style scoped>
 .restaurant-form{
-  /*border: 1px solid #cdcbcc;*/
   padding: 1em 0;
   /*border-radius: 10px;*/
 }
