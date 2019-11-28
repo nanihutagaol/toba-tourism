@@ -1,6 +1,6 @@
 export default {
   method: 'GET',
-  url: '/backend/api/get-all-culinary',
+  url: '/backend/api/getAllCulinary',
   response: {
     'code': 200,
     'message': 'OK',

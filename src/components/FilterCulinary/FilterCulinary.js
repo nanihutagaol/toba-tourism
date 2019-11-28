@@ -5,13 +5,13 @@ export default {
     Collapsible
   },
   props: {
-    restaurantList: {
+    culinaryList: {
       type: Array
     }
   },
   computed: {
     listOfRestaurant () {
-      return this.getUniqueRestaurant(this.restaurantList)
+      return this.getUniqueRestaurant(this.culinaryList)
     }
   },
   methods: {

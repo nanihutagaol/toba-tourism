@@ -74,8 +74,7 @@ export default {
 
 <style scoped>
   .collapsible-card {
-    border-radius: 0.25em;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   }
 
   .collapsible-header {
