@@ -22,12 +22,12 @@ window.config = config
 
 Vue.config.productionTip = false
 
-if (process.env.NODE_ENV !== 'production') {
-  if (process.env.MOCK_ENV !== 'false') {
-    require('@/api-mock/vue-mock')
-  }
-  Vue.config.devtools = true
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   if (process.env.MOCK_ENV !== 'false') {
+//     require('@/api-mock/vue-mock')
+//   }
+//   Vue.config.devtools = true
+// }
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
