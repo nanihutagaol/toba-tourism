@@ -1,23 +1,18 @@
 <template>
-  <form class="kuliner-form" @submit.prevent="validateForm" ref="form" >
+  <form class="culinary-form" @submit.prevent="validateForm" ref="form" >
     <div class="form-group">
-      <div for="restoran_nama">Nama Restoran</div>
-      <input id="restoran_nama" class="form-control" v-model="restoran.restoran_nama" type="text" name="restoran_nama">
+      <div for="culinaryName">Nama Kuliner</div>
+      <input id="culinaryName" class="form-control" v-model="culinary.culinaryName" type="text" name="culinaryName">
     </div>
 
     <div class="form-group">
-      <div for="restoran_lokasi">Lokasi</div>
-      <input id="restoran_lokasi" class="form-control" v-model="restoran.restoran_lokasi" type="text" name="restoran_lokasi">
+      <div for="culinaryPrice">Harga</div>
+      <input id="culinaryPrice" class="form-control" v-model="culinary.culinaryPrice" type="number" name="culinaryPrice" min="0">
     </div>
 
     <div class="form-group">
-      <div for="restoran_kontak">Kontak</div>
-      <input id="restoran_kontak" class="form-control" v-model="restoran.restoran_kontak" type="text" name="restoran_kontak">
-    </div>
-
-    <div class="form-group">
-      <div for="restoran_gambar">File Gambar</div>
-      <input id="restoran_gambar" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
+      <div for="culinaryImage">File Gambar</div>
+      <input id="culinaryImage" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
     </div>
 
     <div class="form-group" style="margin-bottom: 0">
@@ -28,17 +23,17 @@
 
 <script>
 export default {
-  name: 'RestaurantForm',
+  name: 'CulinaryForm',
   props: {
-    formData: ''
+    formData: '',
+    restaurantId: ''
   },
   data () {
     return {
-      restoran: {
-        restoran_nama: '',
-        restoran_kontak: '',
-        restoran_lokasi: '',
-        restoran_gambar: ''
+      culinary: {
+        culinaryName: '',
+        culinaryPrice: '',
+        culinaryImage: ''
       },
       isUpdateFormActive: false
     }
@@ -47,7 +42,7 @@ export default {
     if (this.formData === '') {
       this.isUpdateFormActive = false
     } else {
-      this.restoran = this.formData
+      this.culinary = this.formData
       this.isUpdateFormActive = true
     }
   },
@@ -56,20 +51,28 @@ export default {
   methods: {
     validateForm () {
       if (this.isUpdateFormActive === true) {
-        this.onUpdateRestaurant()
+        this.onUpdateCulinary()
       } else {
-        this.onAddRestaurant()
+        this.onAddCulinary()
       }
-      this.$emit('onSubmitRestaurant')
+      this.$emit('onSubmitCulinary')
     },
-    onAddRestaurant () {
-      this.$store.dispatch('addRestaurant', this.restoran)
+    onAddCulinary () {
+      let temp = {
+        restaurantId: this.restaurantId,
+        culinary: this.culinary
+      }
+      this.$store.dispatch('addCulinary', temp)
     },
-    onUpdateRestaurant () {
-      this.$store.dispatch('updateRestaurant', this.restoran)
+    onUpdateCulinary () {
+      let temp = {
+        restaurantId: this.restaurantId,
+        culinary: this.culinary
+      }
+      this.$store.dispatch('updateCulinary', temp)
     },
     previewFiles () {
-      this.restoran.restoran_gambar = this.$refs.myFiles.files
+      this.culinary.culinaryImage = this.$refs.myFiles.files[0]
     }
   }
 }

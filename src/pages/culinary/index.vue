@@ -1,20 +1,9 @@
 <template>
   <div class="culinary-by-admin">
-    <BannerCategory bannerCaption="Kuliner Populer"/>
+    <banner-category bannerCaption="Kuliner Populer"/>
 
     <div class="container">
       <div class="row">
-
-<!--        <div class="culinary-row culinary-add-button">-->
-<!--          <div class="row">-->
-<!--            <div class="col-sm-3">-->
-<!--            </div>-->
-
-<!--            <div class="col-sm-9">-->
-<!--              <button class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
 
         <div class="culinary-row">
           <div class="row">
@@ -27,17 +16,22 @@
 
               <div>
                 <FilterCulinary
-                  :culinaryList="culinaryList"
+                  :culinaryList="restaurantList"
                   @onFilterByName="onFilterByName"
                 />
               </div>
             </div>
 
             <div class="col-sm-9" >
-              <div class="" v-for="restoran in filteredRestaurantList" :key="restoran.restoran_id">
-                <div class="col-sm-4 food-cart" v-for="kuliner in restoran.kuliner_list" :key="kuliner.kuliner_id">
-                  <div class="">
-                    <CardItemCulinary :restaurant="restoran" :culinary="kuliner"/>
+              <div class="" v-for="restaurant in restaurantList" :key="restaurant.restaurantId">
+                <div class="row food-cart" >
+                  <div class="col-sm-4" v-for="culinary in restaurant.culinaryList" :key="culinary.culinaryId">
+                    <CardItemCulinary
+                      :restaurant="restaurant"
+                      :culinary="culinary"
+                      :isShowButton="false"
+                      @onClickImage="onClickImage"
+                    />
                   </div>
                 </div>
               </div>
@@ -48,6 +42,17 @@
 
       </div>
     </div>
+
+    <!--  ============== Modal to Show Restaurant Form ==============  -->
+    <modal-form v-if="showModalForm" @onCloseModal="onCloseModal">
+      <div slot="modal-title" class="modalName">
+        {{tempCulinary.culinaryName}}
+      </div>
+      <div slot="modal-body">
+       <img :src="tempCulinary.culinaryImage" class="modalImage">
+      </div>
+    </modal-form>
+
   </div>
 </template>
 

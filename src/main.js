@@ -10,10 +10,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import FontAwesome from 'font-awesome/css/font-awesome.css'
 import mixins from './mixins'
 import config from '../config'
+import VueCarousel from 'vue-carousel'
 
 Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.mixin(mixins)
+Vue.use(VueCarousel)
 window.config = config
 
 Vue.config.productionTip = false

@@ -21,3 +21,12 @@ button {
 .food-cart {
   margin-bottom: 1em;
 }
+
+.modalImage {
+  min-height: 350px;
+  width: 100%;
+}
+
+.modalName {
+  font-family: "Trebuchet MS";
+}

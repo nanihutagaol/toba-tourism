@@ -16,6 +16,16 @@ export default new Router({
       path: '/restoran',
       name: 'Restaurant',
       component: () => import('@/pages/restaurant')
+    },
+    {
+      path: '/restoran/detail',
+      name: 'RestaurantDetail',
+      component: () => import('@/pages/detailRestaurant')
+    },
+    {
+      path: '/restoran/detail/:id',
+      name: 'RestaurantDetail2',
+      component: () => import('@/pages/detailRestaurant')
     }
   ]
 })

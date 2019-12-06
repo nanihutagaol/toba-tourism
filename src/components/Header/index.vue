@@ -55,6 +55,7 @@ export default {
 
 <style scoped>
 .header-component {
+  padding-bottom: 3.75em;
 }
 
 .navbar {

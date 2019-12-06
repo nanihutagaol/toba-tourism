@@ -3,6 +3,7 @@ import BannerCategory from '@/components/BannerCategory'
 import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
 import CardItemCulinary from '@/components/CardItemCulinary'
+import ModalForm from '@/components/Modal'
 
 export default {
   name: 'Culinary',
@@ -10,10 +11,13 @@ export default {
     BannerCategory,
     FilterCulinary,
     SortCulinary,
-    CardItemCulinary
+    CardItemCulinary,
+    ModalForm
   },
   data () {
     return {
+      showModalForm: false,
+      tempCulinary: ''
     }
   },
   created () {
@@ -21,18 +25,25 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'culinaryList', 'culinaryFiltered', 'isCulinaryFilterActive'
+      'restaurantList', 'culinaryFiltered', 'isCulinaryFilterActive'
     ]),
     filteredRestaurantList () {
-      console.log(this.culinaryList)
-      if (this.isFilterActive === true) {
-        return this.culinaryFiltered
-      } else {
-        return this.culinaryList
-      }
+      // console.log(this.culinaryList)
+      // if (this.isFilterActive === true) {
+      //   return this.culinaryFiltered
+      // } else {
+      //   return this.culinaryList
+      // }
     }
   },
   methods: {
+    onCloseModal () {
+      this.showModalForm = false
+    },
+    onClickImage (culinary) {
+      this.showModalForm = true
+      this.tempCulinary = culinary
+    },
     onFilterByName (selectedName) {
       let restaurantList = [...this.restaurantList]
       let filteredRestaurants = this.filterByRestaurantName(restaurantList, selectedName)

@@ -1,7 +1,7 @@
 <template>
 <div class="banner-category">
   <div>
-    <img src="@/image/Banner/Kuliner_2.jpg" alt="altText" class="banner-kuliner">
+    <img :src="imagePath" alt="altText" class="banner-kuliner">
   </div>
 
   <div class="container">
@@ -26,12 +26,21 @@ export default {
   props: {
     bannerImage: {
       type: String,
-      default: '@/image/Kuliner.jpg'
+      default: '@/image/Banner/Kuliner_2.jpg'
     },
     bannerCaption: {
       type: String,
       default: 'Default'
     }
+  },
+  data () {
+    return {
+      imagePath: require('@/image/Banner/Kuliner_2.jpg')
+    }
+  },
+  created () {
+    // let images = require(this.bannerImage)
+    // console.log(images)
   }
 }
 </script>
@@ -39,7 +48,7 @@ export default {
 <style scoped>
   img{
     width: 100%;
-    height: 450px;
+    height: 350px;
     position: relative;
     z-index: 1;
     top: 0px;
@@ -55,7 +64,7 @@ export default {
     top: 70%;
     border-radius: 0.35em;
     /*border-bottom: 1px solid #cdcbcc;*/
-    box-shadow: 0px 3px 10px -3px #cdcbcc;
+    box-shadow: 0px 1px 10px -2px #cdcbcc;
     /*box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.19);*/
     z-index: 10;
   }

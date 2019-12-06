@@ -1,14 +1,14 @@
 <template>
 <div class="filter-kuliner">
   <div class="filter-content">
-    <Collapsible label="Filter Berdasar restaurant">
+    <Collapsible label="Filter Berdasar Restoran">
       <div slot="content">
-        <div class="filter-input" v-for="restaurant in listOfRestaurant" :key="restaurant.restoran_id" >
+        <div class="filter-input" v-for="restaurant in listOfRestaurant" :key="restaurant.restaurantId" >
           <input class="filter-checkbox" type="checkbox"
-                 :value="restaurant.restoran_id"
+                 :value="restaurant.restaurantId"
                  :checked="restaurant.isActive"
                  @click="onCheckRestaurant(restaurant)">
-          <span class="filter-name">{{ restaurant.restoran_nama }}</span>
+          <span class="filter-name">{{ restaurant.restaurantName }}</span>
         </div>
       </div>
     </Collapsible>

@@ -1,11 +1,13 @@
 <template>
   <div class="card-item-culinary">
     <card-item
-      :image="culinary.kuliner_gambar"
-      :title="culinary.kuliner_nama"
-      :caption1="currency(culinary.kuliner_harga)"
-      :caption2="restaurant.restoran_nama"
-      :caption3="restaurant.restoran_lokasi"
+      :image="culinary.culinaryImage[0]"
+      :title="culinary.culinaryName"
+      :caption1="currency(culinary.culinaryPrice)"
+      :caption2="restaurant.restaurantName"
+      :caption3="restaurant.restaurantLocation"
+      :isShowButton="isShowButton"
+      @onClickImage="onClickImage"
     >
       <span slot="caption2">
         <img src="@/image/Icon/home.png" alt="altText" class="caption_icon">
@@ -27,6 +29,10 @@ export default {
     },
     culinary: {
       type: Object
+    },
+    isShowButton: {
+      type: Boolean,
+      default: true
     }
   },
   components: {
@@ -34,6 +40,11 @@ export default {
   },
   data () {
     return {
+    }
+  },
+  methods: {
+    onClickImage () {
+      this.$emit('onClickImage', this.culinary)
     }
   }
 }
