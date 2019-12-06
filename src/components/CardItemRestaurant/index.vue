@@ -1,17 +1,18 @@
 <template>
   <div class="card-item-restaurant">
     <card-item
-      :image="restaurant.restoran_gambar"
-      :title="restaurant.restoran_nama"
-      :caption1="restaurant.restoran_lokasi"
-      :caption2="restaurant.restoran_kontak"
+      :url="url"
+      :image="restaurant.restaurantImage[0]"
+      :title="restaurant.restaurantName"
+      :caption2="restaurant.restaurantLocation"
+      :caption3="restaurant.restaurantContact"
       @onClickEdit="onClickEdit"
       @onClickDelete="onClickDelete"
     >
-      <span slot="caption1">
+      <span slot="caption2">
         <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
       </span>
-      <span slot="caption2">
+      <span slot="caption3">
         <img src="@/image/Icon/phone.png" alt="altText" class="caption_icon">
       </span>
     </card-item>
@@ -27,8 +28,16 @@ export default {
       type: Object
     }
   },
+  created () {
+    console.log()
+  },
   components: {
     CardItem
+  },
+  computed: {
+    url () {
+      return '/restoran/detail/' + this.restaurant.restaurantId
+    }
   },
   methods: {
     onClickEdit () {

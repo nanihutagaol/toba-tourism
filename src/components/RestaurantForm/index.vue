@@ -1,23 +1,23 @@
 <template>
-  <form class="restaurant-form" @submit.prevent="validateForm" ref="form" >
+  <form class="restaurant-form" @submit.prevent="validateForm" ref="form">
     <div class="form-group">
-      <div for="restoran_nama">Nama Restoran</div>
-      <input id="restoran_nama" class="form-control" v-model="restoran.restoran_nama" type="text" name="restoran_nama">
+      <div for="restaurantName">Nama restoran</div>
+      <input id="restaurantName" class="form-control" v-model="restaurant.restaurantName" type="text" name="restaurantName" required>
     </div>
 
     <div class="form-group">
-      <div for="restoran_lokasi">Lokasi</div>
-      <input id="restoran_lokasi" class="form-control" v-model="restoran.restoran_lokasi" type="text" name="restoran_lokasi">
+      <div for="restaurantLocation">Lokasi</div>
+      <input id="restaurantLocation" class="form-control" v-model="restaurant.restaurantLocation" type="text" name="restaurantLocation" required>
     </div>
 
     <div class="form-group">
-      <div for="restoran_kontak">Kontak</div>
-      <input id="restoran_kontak" class="form-control" v-model="restoran.restoran_kontak" type="text" name="restoran_kontak">
+      <div for="restaurantContact">Kontak</div>
+      <input id="restaurantContact" class="form-control" v-model="restaurant.restaurantContact" type="text" name="restaurantContact" required>
     </div>
 
     <div class="form-group">
-      <div for="restoran_gambar">File Gambar</div>
-      <input id="restoran_gambar" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
+      <div for="restaurantImage">File Gambar</div>
+      <input id="restaurantImage" ref="myFiles" class="" @change="previewFiles" type="file" required>
     </div>
 
     <div class="form-group" style="margin-bottom: 0">
@@ -34,11 +34,11 @@ export default {
   },
   data () {
     return {
-      restoran: {
-        restoran_nama: '',
-        restoran_kontak: '',
-        restoran_lokasi: '',
-        restoran_gambar: ''
+      restaurant: {
+        restaurantName: '',
+        restaurantContact: '',
+        restaurantLocation: '',
+        restaurantImage: ''
       },
       isUpdateFormActive: false
     }
@@ -47,7 +47,7 @@ export default {
     if (this.formData === '') {
       this.isUpdateFormActive = false
     } else {
-      this.restoran = this.formData
+      this.restaurant = this.formData
       this.isUpdateFormActive = true
     }
   },
@@ -63,13 +63,13 @@ export default {
       this.$emit('onSubmitRestaurant')
     },
     onAddRestaurant () {
-      this.$store.dispatch('addRestaurant', this.restoran)
+      this.$store.dispatch('addRestaurant', this.restaurant)
     },
     onUpdateRestaurant () {
-      this.$store.dispatch('updateRestaurant', this.restoran)
+      this.$store.dispatch('updateRestaurant', this.restaurant)
     },
-    previewFiles () {
-      this.restoran.restoran_gambar = this.$refs.myFiles.files
+    previewFiles (event) {
+      this.restaurant.restaurantImage = event.target.files[0]
     }
   }
 }

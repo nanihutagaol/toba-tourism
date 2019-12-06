@@ -35,10 +35,6 @@ export default {
     }
   },
   methods: {
-    onCloseModal () {
-      this.showModalForm = false
-      this.restaurant = ''
-    },
     getRestaurants () {
       this.$store.dispatch('getRestaurantList')
     },
@@ -51,13 +47,23 @@ export default {
           return b.restoran_nama - a.restoran_nama
       })
     },
+    onSubmitRestaurant () {
+      this.getRestaurants()
+      this.showModalForm = false
+    },
     onEditRestaurant (restaurant) {
       this.restaurant = restaurant
       this.showModalForm = true
     },
     onDeleteRestaurant (restaurant) {
-      console.log(restaurant.index)
       this.$store.dispatch('deleteRestaurant', restaurant)
-    }
+    },
+    onViewDetail (restaurant) {
+      this.$store.dispatch('getRestaurantDetail', restaurant)
+    },
+    onCloseModal () {
+      this.showModalForm = false
+      this.restaurant = ''
+    },
   }
 }

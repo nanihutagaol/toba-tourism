@@ -2,11 +2,15 @@ import Axios from 'axios'
 
 export default {
   state: {
+    restaurantDetail: {},
     restaurantList: [],
     restaurantFiltered: [],
     isFilterActive: false
   },
   getters: {
+    restaurantDetail: state => {
+      return state.restaurantDetail
+    },
     restaurantList: state => {
       return state.restaurantList
     },
@@ -18,6 +22,9 @@ export default {
     }
   },
   mutations: {
+    setRestaurantDetail: (state, payload) => {
+      state.restaurantDetail = payload
+    },
     setRestaurantList: (state, payload) => {
       state.restaurantList = payload
     },
@@ -34,25 +41,99 @@ export default {
   actions: {
     getRestaurantList ({commit}) {
       Axios
-        .get('http://demo8100119.mockable.io/toba-tourism/restoran')
+        .get('http://192.168.43.139:9090/api/restaurant')
         .then(response => {
           let out = []
-          let index = 0
-
-          response.data.data.forEach(function (restaurant) {
-            restaurant.index = index++
+          response.data.data.forEach(restaurant => {
+            let images = []
+            restaurant.restaurantImage.forEach(image => {
+              let temp = image.replace('localhost', 'http://192.168.43.139')
+              images.push(temp)
+            })
+            restaurant.restaurantImage = images
             out.push(restaurant)
           })
-
           commit('setRestaurantList', out)
         }).catch((e) => {
           console.log(e)
         })
     },
-    addRestaurant ({commit, dispatch}, restaurant) {
+    getCulinaryList ({commit}) {
       Axios
-        .post('http://demo8100119.mockable.io/toba-tourism/restoran', JSON.stringify(restaurant), {
-          'headers': {'Content-Type': 'application/json'}
+        .get('http://192.168.43.139:9090/api/culinary')
+        .then(response => {
+          console.log(response.data.data)
+          let out = []
+          response.data.data.forEach(restaurant => {
+            let imagesRestaurant = []
+
+            restaurant.restaurantImage.forEach(image => {
+              let temp = image.replace('localhost', 'http://192.168.43.139')
+              imagesRestaurant.push(temp)
+            })
+            restaurant.restaurantImage = imagesRestaurant
+
+            let culinaries = []
+            restaurant.culinaryList.forEach(culinary => {
+              let imagesCulinary = []
+              culinary.culinaryImage.forEach(image => {
+                let temp = image.replace('localhost', 'http://192.168.43.139')
+                imagesCulinary.push(temp)
+              })
+              culinary.culinaryImage = imagesCulinary
+              culinaries.push(culinary)
+            })
+            restaurant.culinaryList = culinaries
+
+            out.push(restaurant)
+          })
+          console.log(out)
+          commit('setRestaurantList', out)
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    getRestaurantDetail ({commit}, restaurantId) {
+      Axios
+        .get('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
+        .then(response => {
+          let restaurant = response.data.data
+
+          let images = []
+          restaurant.restaurantImage.forEach(image => {
+            let temp = image.replace('localhost', 'http://192.168.43.139')
+            images.push(temp)
+          })
+          restaurant.restaurantImage = images
+
+          let culinaryList = []
+          restaurant.culinaryList.forEach(culinary => {
+            let imagesCulinary = []
+            culinary.culinaryImage.forEach(image => {
+              let temp = image.replace('localhost', 'http://192.168.43.139')
+              imagesCulinary.push(temp)
+            })
+            culinary.culinaryImage = imagesCulinary
+            culinaryList.push(culinary)
+          })
+          restaurant.culinaryList = culinaryList
+
+          commit('setRestaurantDetail', restaurant)
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    addRestaurant ({commit, dispatch}, restaurant) {
+      const formData = new FormData()
+
+      formData.append('restaurantImage', restaurant.restaurantImage)
+      formData.append('restaurantName', restaurant.restaurantName)
+      formData.append('restaurantLocation', restaurant.restaurantLocation)
+      formData.append('restaurantContact', restaurant.restaurantContact)
+
+      Axios
+        .post('http://192.168.43.139:9090/api/restaurant', formData, {
+          headers: {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
           console.log('success')
