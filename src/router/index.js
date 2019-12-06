@@ -8,14 +8,20 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/test',
-      name: 'HelloWorld',
-      component: () => import('@/components/HelloWorld')
-    },
-    {
+    
       path: '/',
       name: 'HomePage',
-      component: () => import('@/pages/Homepage')
+      component: () => import('@/pages/Homepage
+     },
+     { 
+      path: '/kuliner',
+      name: 'KulinerCustomer',
+      component: () => import('@/pages/culinary')
+    },
+    {
+      path: '/restoran',
+      name: 'Restaurant',
+      component: () => import('@/pages/restaurant')
     }
   ]
 })
