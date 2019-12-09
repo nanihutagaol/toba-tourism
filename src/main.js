@@ -9,7 +9,6 @@ import BootstrapVue from 'bootstrap-vue'
 import FontAwesome from 'font-awesome/css/font-awesome.css'
 import mixins from './mixins'
 import config from '../config'
-import i18n from './i18n'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueResource from 'vue-resource'
 
