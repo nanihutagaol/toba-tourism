@@ -1,0 +1,31 @@
+button {
+  min-width: 90px;
+  border-radius: 0.75em;
+}
+
+.fa-plus {
+  background: #15c715;
+  padding: 0.5em;
+  border-radius: 1em;
+  font-size: 12px;
+}
+
+.culinary-row {
+  margin-top: 1em;
+}
+
+.food-cart {
+  margin-bottom: 1em;
+}
+
+.right-point {
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+
+.left-point {
+  border-radius: 0;
+  padding-left: 2em;
+  clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0% 50%);
+}
+
+

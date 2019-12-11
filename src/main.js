@@ -4,15 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import FontAwesome from 'font-awesome/css/font-awesome.css'
 import mixins from './mixins'
 import config from '../config'
-import i18n from './i18n'
+import VueCarousel from 'vue-carousel'
 
-Vue.use(Bootstrap)
+Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.mixin(mixins)
+Vue.use(VueCarousel)
 window.config = config
 
 Vue.config.productionTip = false
@@ -22,7 +25,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  i18n,
   components: { App },
   template: '<App/>'
 })

@@ -14,6 +14,12 @@
             <a class="nav-link" href="#">Paket Wisata</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/restoran">Restoran</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/kuliner">Kuliner</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#">Tentang Kami</a>
           </li>
           <li class="nav-item">
@@ -49,6 +55,13 @@ export default {
 
 <style scoped>
 .header-component {
+  padding-bottom: 3.75em;
+}
+
+.navbar {
+  position:fixed;
+  z-index: 995;
+  width: 100%;
 }
 
 .btn-daftar {

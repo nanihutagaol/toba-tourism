@@ -69,6 +69,7 @@ export default {
   background-color: #2c3e50;
   color: white;
   font-size: 12px;
+  margin-top: 5em;
 }
 
 .my-col {
