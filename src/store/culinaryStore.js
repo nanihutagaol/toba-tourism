@@ -29,7 +29,42 @@ export default {
     }
   },
   actions: {
+    getCulinaryList ({commit}) {
+      Axios
+      // .get('http://192.168.43.139:9090/api/culinary')
+        .get('http://www.amock.io/api/nanihutagao/toba-tourism/culinary')
+        .then(response => {
+          let out = []
+          response.data.data.forEach(restaurant => {
+            let imagesRestaurant = []
+
+            restaurant.restaurantImage.forEach(image => {
+              let temp = image.replace('localhost', 'http://192.168.43.139')
+              imagesRestaurant.push(temp)
+            })
+            restaurant.restaurantImage = imagesRestaurant
+            let culinaries = []
+            restaurant.culinaryList.forEach(culinary => {
+              let imagesCulinary = []
+              culinary.culinaryImage.forEach(image => {
+                let temp = image.replace('localhost', 'http://192.168.43.139')
+                imagesCulinary.push(temp)
+              })
+              culinary.culinaryImage = imagesCulinary
+              culinaries.push(culinary)
+            })
+            restaurant.culinaryList = culinaries
+
+            out.push(restaurant)
+          })
+          console.log(out)
+          commit('setRestaurantList', out)
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
     addCulinary ({commit, dispatch}, data) {
+      console.log(data)
       const formData = new FormData()
 
       formData.append('culinaryImage', data.culinary.culinaryImage)
@@ -47,11 +82,13 @@ export default {
         })
     },
     updateCulinary ({commit, dispatch}, data) {
-      console.log(data.restoran_id)
-      console.log(data.kuliner)
+      console.log(data)
+      const formData = new FormData()
+      formData.append('culinaryName', data.culinary.culinaryName)
+      formData.append('culinaryPrice', data.culinary.culinaryPrice)
+
       Axios
-      // .post('http://demo8100119.mockable.io/toba-tourism/kuliner', JSON.stringify(data.kuliner), {
-        .post('https://demo8100119.mockable.io/toba-tourism/kuliner', JSON.stringify(data.kuliner), {
+        .put('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
           'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
@@ -60,13 +97,28 @@ export default {
           console.log(e)
         })
     },
-    deleteCulinary ({commit, state}, restaurant) {
-      restaurant.restoranId = '{restoran_id}' // delete after real api
+    updateCulinaryImage ({commit, dispatch}, data) {
+      console.log(data)
+      const formData = new FormData()
+      formData.append('culinaryImage', data.culinary.culinaryImage)
+
       Axios
-        .delete('http://demo8100119.mockable.io/toba-tourism/restoran/' + restaurant.restoranId)
+        .put('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
+          'headers': {'Content-Type': 'application/json'}
+        })
+        .then(response => {
+          console.log(response.data.message)
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    deleteCulinary ({commit, state}, data) {
+      console.log(data)
+      Axios
+        .delete('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinaryId)
         .then(response => {
           if (response.data.status === 'OK') {
-            commit('deleteRestaurant', restaurant)
+            // commit('deleteRestaurant', restaurant)
             console.log('bisa dong')
           }
         }).catch((e) => {

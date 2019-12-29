@@ -3,7 +3,8 @@ import BannerCategory from '@/components/BannerCategory'
 import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
 import CardItemCulinary from '@/components/CardItemCulinary'
-import ModalForm from '@/components/Modal'
+import ModalShowImage from '@/components/Modal/ModalShowImage'
+import Loading from '@/components/Examples/Loading'
 
 export default {
   name: 'Culinary',
@@ -12,12 +13,13 @@ export default {
     FilterCulinary,
     SortCulinary,
     CardItemCulinary,
-    ModalForm
+    ModalShowImage,
+    Loading
   },
   data () {
     return {
-      showModalForm: false,
-      tempCulinary: ''
+      showImageView: false,
+      culinaryImage: ''
     }
   },
   created () {
@@ -38,11 +40,11 @@ export default {
   },
   methods: {
     onCloseModal () {
-      this.showModalForm = false
+      this.showImageView = false
     },
-    onClickImage (culinary) {
-      this.showModalForm = true
-      this.tempCulinary = culinary
+    onClickImage (image) {
+      this.showImageView = true
+      this.culinaryImage = image
     },
     onFilterByName (selectedName) {
       let restaurantList = [...this.restaurantList]
