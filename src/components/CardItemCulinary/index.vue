@@ -6,7 +6,7 @@
       :caption1="currency(culinary.culinaryPrice)"
       :caption2="restaurant.restaurantName"
       :caption3="restaurant.restaurantLocation"
-      :isShowButton="isShowButton"
+      :isAdminMode="isAdminMode"
       @onClickImage="onClickImage"
     >
       <span slot="caption2">
@@ -30,7 +30,7 @@ export default {
     culinary: {
       type: Object
     },
-    isShowButton: {
+    isAdminMode: {
       type: Boolean,
       default: true
     }
@@ -44,7 +44,10 @@ export default {
   },
   methods: {
     onClickImage () {
-      this.$emit('onClickImage', this.culinary)
+      this.$emit('onClickImage', this.culinary.culinaryImage[0])
+    },
+    onClickCamera () {
+      this.$emit('onClickCamera', this.culinary)
     }
   }
 }

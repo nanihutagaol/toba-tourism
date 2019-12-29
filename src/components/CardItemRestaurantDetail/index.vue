@@ -4,8 +4,11 @@
       :image="culinary.culinaryImage[0]"
       :title="culinary.culinaryName"
       :caption1="currency(culinary.culinaryPrice)"
+      :isAdminMode="isAdminMode"
       @onClickEdit="onClickEdit"
       @onClickDelete="onClickDelete"
+      @onClickImage="onClickImage"
+      @onClickCamera="onClickCamera"
     />
   </div>
 </template>
@@ -13,13 +16,17 @@
 <script>
 import CardItem from '@/components/CardItem'
 export default {
-  name: 'CardItemCulinary',
+  name: 'CardItemRestaurantDetail',
   props: {
     restaurant: {
       type: Object
     },
     culinary: {
       type: Object
+    },
+    isAdminMode: {
+      type: Boolean,
+      default: true
     }
   },
   components: {
@@ -35,6 +42,16 @@ export default {
     },
     onClickDelete () {
       this.$emit('onClickDelete', this.culinary)
+    },
+    onClickImage () {
+      this.$emit('onClickImage', this.culinary.culinaryImage[0])
+    },
+    onClickCamera (image) {
+      let culinary = {
+        culinaryId: this.culinary.culinaryId,
+        culinaryImage: image
+      }
+      this.$emit('onClickCamera', culinary)
     }
   }
 }

@@ -1,14 +1,26 @@
 <template>
   <div class="card-item">
     <div class="card-img">
+      <div class="card-camera-icon" v-if="isAdminMode">
+        <label for="cameraIcon"><i class="icon-select-image fa fa-camera"></i></label>
+        <input id="cameraIcon" ref="myFiles" class="" @change="previewFiles" type="file" required>
+      </div>
       <img :src="image" @click="onClickImage">
     </div>
     <div class="card-description">
-      <div class="card-title"><a :href="url">{{title}}</a> </div>
-      <div class="card-caption card-caption1"><slot name="caption1"></slot>{{caption1}}</div>
-      <div class="card-caption"><slot name="caption2"></slot>{{caption2}}</div>
-      <div class="card-caption"><slot name="caption3"></slot>{{caption3}}</div>
-      <div class="card-button" v-if="isShowButton">
+      <div class="card-title">
+        <a :href="url">{{title}}</a>
+      </div>
+      <div class="card-caption card-caption1">
+        <slot name="caption1"></slot>{{caption1}}
+      </div>
+      <div class="card-caption">
+        <slot name="caption2"></slot>{{caption2}}
+      </div>
+      <div class="card-caption">
+        <slot name="caption3"></slot>{{caption3}}
+      </div>
+      <div class="card-button" v-if="isAdminMode">
         <button class="btn toba-btn-info" @click="onClickEdit">Edit</button>
         <button class="btn toba-btn-danger" @click="onClickDelete">Hapus</button>
       </div>
@@ -38,9 +50,14 @@ export default {
     caption3: {
       type: String
     },
-    isShowButton: {
+    isAdminMode: {
       type: Boolean,
       default: true
+    }
+  },
+  data () {
+    return {
+      cardImage: ''
     }
   },
   methods: {
@@ -52,6 +69,15 @@ export default {
     },
     onClickImage () {
       this.$emit('onClickImage')
+    },
+    onClickCamera (image) {
+      this.$emit('onClickCamera', image)
+    },
+    previewFiles (event) {
+      this.cardImage = event.target.files[0]
+      if (this.cardImage !== null && this.cardImage !== undefined && this.cardImage.type.match('image/*')) {
+        this.onClickCamera(this.cardImage)
+      }
     }
   }
 }
@@ -65,13 +91,6 @@ export default {
   }
   .card-item:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .card-img {
-    line-height: 1.5em;
-    border-radius: 10px;
-  }
-  img {
-    border-radius: 10px 10px 0 0;
   }
   .card-title {
     font-size: 18px;
@@ -93,7 +112,13 @@ export default {
   .card-button {
     margin-top: 0.5em;
   }
+  .card-img {
+    line-height: 1.5em;
+    border-radius: 10px;
+    display: inline;
+  }
   img{
+    border-radius: 10px 10px 0 0;
     width: 100%;
     height: 225px;
     position: relative;
@@ -102,8 +127,8 @@ export default {
     filter: blur();
     border: 1px solid #c7c7c7
   }
-  p{
-    text-align: center;
+  img {
+    cursor: pointer;
   }
   button {
     font-size: 12px;
@@ -111,5 +136,38 @@ export default {
     /*margin: 0 0.5em;*/
     min-width: 65px;
     padding: 0.25em;
+  }
+  .icon-select-image, .icon-update-image {
+    right: 20px;
+    padding: 0.5em;
+    z-index: 10;
+    position:absolute;
+    border-radius: 1em;
+  }
+  .icon-select-image {
+    top: 6px;
+    background: white;
+  }
+  .icon-update-image {
+    top: 10%;
+    background: #B6EEC3;
+  }
+  .icon-select-image:hover{
+    cursor: pointer;
+    background: #f2f3f4;
+  }
+  .icon-update-image:hover {
+    cursor: pointer;
+    background: #63E882;
+  }
+  .card-camera-icon > #cameraIcon, .card-upload-icon > #uploadIcon
+  {
+    width:0;
+    height:0;
+    visibility:hidden;
+    display: none;
+  }
+  .card-camera-icon > label, .card-upload-icon > label {
+    display: inline;
   }
 </style>

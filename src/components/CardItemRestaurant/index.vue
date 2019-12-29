@@ -8,6 +8,8 @@
       :caption3="restaurant.restaurantContact"
       @onClickEdit="onClickEdit"
       @onClickDelete="onClickDelete"
+      @onClickImage="onClickImage"
+      @onClickCamera="onClickCamera"
     >
       <span slot="caption2">
         <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
@@ -28,9 +30,6 @@ export default {
       type: Object
     }
   },
-  created () {
-    console.log()
-  },
   components: {
     CardItem
   },
@@ -45,6 +44,16 @@ export default {
     },
     onClickDelete () {
       this.$emit('onClickDelete', this.restaurant)
+    },
+    onClickImage () {
+      this.$emit('onClickImage', this.restaurant.restaurantImage[0])
+    },
+    onClickCamera (image) {
+      let restaurant = {
+        restaurantId: this.restaurant.restaurantId,
+        restaurantImage: image
+      }
+      this.$emit('onClickCamera', restaurant)
     }
   }
 }

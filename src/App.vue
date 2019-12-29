@@ -48,7 +48,7 @@ export default {
 .toba-btn-success:hover {
   border: 1px solid #63E882;
   background-color: #B6EEC3;
-  color: #fff;
+  color: #000;
 }
 
 .toba-btn-info {
@@ -57,10 +57,10 @@ export default {
   color: #fff;
 }
 
-.toba-btn-success:hover {
+.toba-btn-info:hover {
   border: 1px solid #63E3E8;
   background-color: #A8E8EB;
-  color: #fff;
+  color: #000;
 }
 
 .toba-btn-danger {
@@ -72,6 +72,28 @@ export default {
 .toba-btn-danger:hover {
   border: 1px solid #FF3D3D;
   background-color: #F16C6C;
+  color: #000;
+}
+
+.toba-btn-basic {
+  background-color: #b3b3b3;
+  border-radius: 10px;
   color: #fff;
+}
+
+.toba-btn-basic:hover {
+  border: 1px solid #b3b3b3;
+  background-color: #dedede;
+  color: #000;
+}
+.animate-bottom {
+  position: relative;
+  animation-name: animatebottom;
+  animation-duration: 1.5s
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
 }
 </style>
