@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group" style="margin-bottom: 0">
-      <input class="form-control btn toba-btn-success" type="submit"  :value="formData === '' ? 'Tambah' : 'Ubah'">
+      <input class="form-control btn toba-btn-success" type="submit" value="Tambah">
     </div>
   </form>
 </template>
@@ -25,7 +25,6 @@
 export default {
   name: 'CulinaryForm',
   props: {
-    formData: '',
     restaurantId: ''
   },
   data () {
@@ -35,56 +34,32 @@ export default {
         culinaryPrice: '',
         culinaryImage: ''
       },
-      isUpdateFormActive: false
+      isError: false
     }
-  },
-  created () {
-    if (this.formData === '') {
-      this.isUpdateFormActive = false
-    } else {
-      this.culinary = this.formData
-      this.isUpdateFormActive = true
-    }
-  },
-  computed: {
   },
   methods: {
     validateForm () {
-      if (this.isUpdateFormActive === true) {
-        this.onUpdateCulinary()
+      if (this.culinary.culinaryImage !== '') {
+        let temp = {
+          restaurantId: this.restaurantId,
+          culinary: this.culinary
+        }
+        this.$store.dispatch('addCulinary', temp)
+        this.$emit('onSubmitCulinary')
+      }
+    },
+    previewFiles (event) {
+      if (event.target.files[0].type.match('image/*')) {
+        this.culinary.culinaryImage = event.target.files[0]
+        this.isError = false
       } else {
-        this.onAddCulinary()
+        this.isError = true
       }
-      this.$emit('onSubmitCulinary')
-    },
-    onAddCulinary () {
-      let temp = {
-        restaurantId: this.restaurantId,
-        culinary: this.culinary
-      }
-      this.$store.dispatch('addCulinary', temp)
-    },
-    onUpdateCulinary () {
-      let temp = {
-        restaurantId: this.restaurantId,
-        culinary: this.culinary
-      }
-      this.$store.dispatch('updateCulinary', temp)
-    },
-    previewFiles () {
-      this.culinary.culinaryImage = this.$refs.myFiles.files[0]
     }
   }
 }
 </script>
 
 <style scoped>
-  .restaurant-form{
-    padding: 1em 0;
-    /*border-radius: 10px;*/
-  }
 
-  .form-group {
-    text-align: left;
-  }
 </style>
