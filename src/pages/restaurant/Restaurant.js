@@ -3,8 +3,14 @@ import BannerCategory from '@/components/BannerCategory'
 import FilterCulinary from '@/components/FilterCulinary'
 import SortCulinary from '@/components/SortCulinary'
 import CardItemRestaurant from '@/components/CardItemRestaurant'
-import RestaurantForm from '@/components/RestaurantForm'
+import FormCreate from '@/components/Form/RestaurantForm'
+import FormUpdate from '@/components/Form/RestaurantForm/UpdateData.vue'
 import ModalForm from '@/components/Modal'
+import ModalShowImage from '@/components/Modal/ModalShowImage'
+import ModalApproval from '@/components/Modal/ModalApproval'
+import ButtonSearch from '@/components/ButtonSearch'
+import NotFound from '@/components/Examples/NotFound'
+import Loading from '@/components/Examples/Loading'
 
 export default {
   name: 'Restaurant',
@@ -13,13 +19,25 @@ export default {
     FilterCulinary,
     SortCulinary,
     CardItemRestaurant,
-    RestaurantForm,
-    ModalForm
+    FormCreate,
+    FormUpdate,
+    ModalForm,
+    ModalShowImage,
+    ModalApproval,
+    ButtonSearch,
+    NotFound,
+    Loading
   },
   data () {
     return {
+      bannerImage: require('@/image/Banner/restaurant.png'),
+      restaurantImage: '',
       restaurant: '',
-      showModalForm: false
+      showCreateForm: false,
+      showUpdateForm: false,
+      showDeleteForm: false,
+      showImageForm: false,
+      showImageView: false
     }
   },
   created () {
@@ -28,42 +46,50 @@ export default {
   computed: {
     ...mapGetters([
       'restaurantList'
-    ]),
-    sortedRestaurantList () {
-      let restaurants = [...this.restaurantList]
-      return this.sortRestaurantByName (restaurants,'asc')
-    }
+    ])
   },
   methods: {
     getRestaurants () {
       this.$store.dispatch('getRestaurantList')
     },
-    sortRestaurantByName (restaurantList, type) {
-      console.log(restaurantList)
-      return restaurantList.sort((a, b) => {
-        if (type === 'asc')
-          return a.restoran_nama - b.restoran_nama
-        else
-          return b.restoran_nama - a.restoran_nama
-      })
+    onClickEdit (restaurant) {
+      this.restaurant = restaurant
+      this.showUpdateForm = true
+    },
+    onClickImage (image) {
+      this.restaurantImage = image
+      this.showImageView = true
+    },
+    onClickCamera (restaurant) {
+      this.restaurant = restaurant
+      this.showImageForm = true
+    },
+    onClickDelete (restaurant) {
+      this.restaurant = restaurant
+      this.showDeleteForm = true
     },
     onSubmitRestaurant () {
       this.getRestaurants()
-      this.showModalForm = false
-    },
-    onEditRestaurant (restaurant) {
-      this.restaurant = restaurant
-      this.showModalForm = true
-    },
-    onDeleteRestaurant (restaurant) {
-      this.$store.dispatch('deleteRestaurant', restaurant)
+      this.onCloseModal()
     },
     onViewDetail (restaurant) {
       this.$store.dispatch('getRestaurantDetail', restaurant)
     },
-    onCloseModal () {
-      this.showModalForm = false
-      this.restaurant = ''
+    onEditRestaurantImage () {
+      this.$store.dispatch('updateRestaurantImage', this.restaurant)
+      this.onSubmitRestaurant()
     },
+    onDeleteRestaurant () {
+      this.$store.dispatch('deleteRestaurant', this.restaurant.restaurantId)
+      this.onSubmitRestaurant()
+    },
+    onCloseModal () {
+      this.showCreateForm = false
+      this.showUpdateForm = false
+      this.showDeleteForm = false
+      this.showImageForm = false
+      this.showImageView = false
+      this.restaurant = ''
+    }
   }
 }

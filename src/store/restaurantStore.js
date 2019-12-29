@@ -41,7 +41,8 @@ export default {
   actions: {
     getRestaurantList ({commit}) {
       Axios
-        .get('http://192.168.43.139:9090/api/restaurant')
+        // .get('http://192.168.43.139:9090/api/restaurant')
+        .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant')
         .then(response => {
           let out = []
           response.data.data.forEach(restaurant => {
@@ -58,47 +59,12 @@ export default {
           console.log(e)
         })
     },
-    getCulinaryList ({commit}) {
-      Axios
-        .get('http://192.168.43.139:9090/api/culinary')
-        .then(response => {
-          console.log(response.data.data)
-          let out = []
-          response.data.data.forEach(restaurant => {
-            let imagesRestaurant = []
-
-            restaurant.restaurantImage.forEach(image => {
-              let temp = image.replace('localhost', 'http://192.168.43.139')
-              imagesRestaurant.push(temp)
-            })
-            restaurant.restaurantImage = imagesRestaurant
-
-            let culinaries = []
-            restaurant.culinaryList.forEach(culinary => {
-              let imagesCulinary = []
-              culinary.culinaryImage.forEach(image => {
-                let temp = image.replace('localhost', 'http://192.168.43.139')
-                imagesCulinary.push(temp)
-              })
-              culinary.culinaryImage = imagesCulinary
-              culinaries.push(culinary)
-            })
-            restaurant.culinaryList = culinaries
-
-            out.push(restaurant)
-          })
-          console.log(out)
-          commit('setRestaurantList', out)
-        }).catch((e) => {
-          console.log(e)
-        })
-    },
     getRestaurantDetail ({commit}, restaurantId) {
       Axios
-        .get('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
+        // .get('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
+        .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant/detail')
         .then(response => {
           let restaurant = response.data.data
-
           let images = []
           restaurant.restaurantImage.forEach(image => {
             let temp = image.replace('localhost', 'http://192.168.43.139')
@@ -124,6 +90,7 @@ export default {
         })
     },
     addRestaurant ({commit, dispatch}, restaurant) {
+      console.log(restaurant)
       const formData = new FormData()
 
       formData.append('restaurantImage', restaurant.restaurantImage)
@@ -142,23 +109,40 @@ export default {
         })
     },
     updateRestaurant ({commit, dispatch}, restaurant) {
+      console.log(restaurant)
+      const formData = new FormData()
+      formData.append('restaurantName', restaurant.restaurantName)
+      formData.append('restaurantLocation', restaurant.restaurantLocation)
+      formData.append('restaurantContact', restaurant.restaurantContact)
+
       Axios
-        .post('http://demo8100119.mockable.io/toba-tourism/restoran', JSON.stringify(restaurant), {
-          'headers': {'Content-Type': 'application/json'}
-        })
+        .put('http://192.168.43.139:9090/api/restaurant/' + restaurant.restaurantId, formData)
         .then(response => {
           console.log('success')
         }).catch((e) => {
           console.log(e)
         })
     },
-    deleteRestaurant ({commit, state}, restaurant) {
-      restaurant.restoranId = '{restoran_id}' // delete after real api
+    updateRestaurantImage ({commit, dispatch}, restaurant) {
+      console.log(restaurant)
+      const formData = new FormData()
+      formData.append('restaurantImage', restaurant.restaurantImage)
+
       Axios
-        .delete('http://demo8100119.mockable.io/toba-tourism/restoran/' + restaurant.restoranId)
+        .put('http://192.168.43.139:9090/api/restaurant/' + restaurant.restaurantId, formData)
+        .then(response => {
+          console.log('success')
+        }).catch((e) => {
+          console.log(e)
+        })
+    },
+    deleteRestaurant ({commit, state}, restaurantId) {
+      console.log(restaurantId)
+      Axios
+        .delete('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
         .then(response => {
           if (response.data.status === 'OK') {
-            commit('deleteRestaurant', restaurant)
+            // commit('deleteRestaurant', restaurant)
             console.log('bisa dong')
           }
         }).catch((e) => {
