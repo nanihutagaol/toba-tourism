@@ -25,7 +25,7 @@ export default {
   props: {
     bannerImage: {
       type: String,
-      default: require('@/image/Banner/Kuliner_2.jpg')
+      default: require('@/image/Banner/culinary.png')
     },
     bannerCaption: {
       type: String,

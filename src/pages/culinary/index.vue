@@ -1,6 +1,6 @@
 <template>
   <div class="culinary-by-admin">
-    <banner-category bannerCaption="Kuliner Populer"/>
+    <banner-category bannerCaption="Kuliner Populer" :bannerImage="bannerImage"/>
 
     <div class="container">
       <div class="row">

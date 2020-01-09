@@ -7,6 +7,7 @@ import ModalShowImage from '@/components/Modal/ModalShowImage'
 import ModalApproval from '@/components/Modal/ModalApproval'
 import CardItemRestaurantDetail from '@/components/CardItemRestaurantDetail'
 import Loading from '@/components/Examples/Loading'
+import BannerDetail from '@/components/BannerDetail'
 
 export default {
   name: 'RestaurantDetail',
@@ -35,7 +36,8 @@ export default {
     ModalShowImage,
     ModalApproval,
     CardItemRestaurantDetail,
-    Loading
+    Loading,
+    BannerDetail
   },
   computed: {
     ...mapGetters([

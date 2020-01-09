@@ -13,6 +13,7 @@
     <div class="form-group">
       <div for="culinaryImage">File Gambar</div>
       <input id="culinaryImage" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
+      <div style="font-size: 11px; color: #FF3D3D" v-if="isError">File harus dalam format 'image/*'</div>
     </div>
 
     <div class="form-group" style="margin-bottom: 0">

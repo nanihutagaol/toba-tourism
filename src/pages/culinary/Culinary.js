@@ -18,6 +18,7 @@ export default {
   },
   data () {
     return {
+      bannerImage: require('@/image/Banner/culinary.png'),
       showImageView: false,
       culinaryImage: ''
     }

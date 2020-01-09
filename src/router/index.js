@@ -23,14 +23,29 @@ export default new Router({
       component: () => import('@/pages/restaurant')
     },
     {
-      path: '/restoran/detail',
-      name: 'RestaurantDetail',
-      component: () => import('@/pages/detailRestaurant')
+      path: '/restoran/detail/:id',
+      name: 'DetailRestoran',
+      component: () => import('@/pages/RestaurantDetail')
     },
     {
-      path: '/restoran/detail/:id',
-      name: 'RestaurantDetail2',
-      component: () => import('@/pages/detailRestaurant')
+      path: '/pariwisata',
+      name: 'Pariwisata',
+      component: () => import('@/pages/Tourism')
+    },
+    {
+      path: '/pariwisata/detail/:id',
+      name: 'DetailPariwisata',
+      component: () => import('@/pages/TourismDetail')
+    },
+    {
+      path: '/transportasi',
+      name: 'Transportasi',
+      component: () => import('@/pages/Transportation')
+    },
+    {
+      path: '/transportasi/detail/:id',
+      name: 'DetailTransportasi',
+      component: () => import('@/pages/TransportationDetail')
     }
   ]
 })

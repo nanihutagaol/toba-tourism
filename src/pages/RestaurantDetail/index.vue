@@ -6,20 +6,12 @@
 
    <div v-else class="restaurant-group">
      <div class="restaurant-image">
-       <img :src="restaurantDetail.restaurantImage[0]" class="carousel-image">
-       <div class="content-group">
-         <p class="content-title">
-           {{restaurantDetail.restaurantName}}
-         </p>
-         <p class="content-location">
-           <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
-           {{restaurantDetail.restaurantLocation}}
-         </p>
-         <p class="content-contact">
-           <img src="@/image/Icon/phone.png" alt="altText" class="caption_icon">
-           {{restaurantDetail.restaurantContact}}
-         </p>
-       </div>
+       <banner-detail
+         :bannerImage="restaurantDetail.restaurantImage[0]"
+         :bannerName="restaurantDetail.restaurantName"
+         :bannerLocation="restaurantDetail.restaurantLocation"
+         :bannerContact="restaurantDetail.restaurantContact"
+       />
      </div>
 
      <div class="container container-kuliner">
