@@ -1,0 +1,28 @@
+.carousel-image {
+  height: 350px;
+  width: 100%;
+}
+.container-kuliner {
+  margin-top: 3em;
+  /*background: #ecf0f5;*/
+}
+.kuliner-group {
+  padding: 0.5em;
+}
+.list-kuliner {
+  padding: 0.5em;
+}
+.right-kuliner-title {
+  text-align: right;
+}
+
+.caption_icon {
+  width: 25px;
+  height: 20px;
+  margin: 1px;
+}
+.slider-alt {
+  background: #f2f3f4;
+  height: 350px;
+  padding: 150px
+}
