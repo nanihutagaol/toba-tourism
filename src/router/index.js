@@ -13,6 +13,16 @@ export default new Router({
       component: () => import('@/pages/Homepage')
     },
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/pages/Login')
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('@/pages/Register')
+    },
+    {
       path: '/kuliner',
       name: 'KulinerCustomer',
       component: () => import('@/pages/culinary')
