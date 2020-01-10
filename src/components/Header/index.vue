@@ -33,10 +33,10 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Masuk</a>
+            <a class="nav-link" href="/login">Masuk</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/register">
               <button class="btn btn-info btn-daftar" type="submit">
                 Daftar
               </button>

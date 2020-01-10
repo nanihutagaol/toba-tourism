@@ -1,0 +1,92 @@
+.background{
+  padding-top: 60px;
+  padding-bottom: 10px;
+  background-image: url("../../image/Danau.jpeg");
+  background-size: cover;
+  margin-bottom: -70px;
+}
+.bg{
+  background-color:rgba(255,255,255,0.2);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.login-card{
+  margin-right: -90px;
+}
+.login{
+  margin-top:30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 60%;
+}
+.image{
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+.text-center{
+  margin-top: 10px;
+  text-align: center;
+}
+.text1{
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center; 
+}
+.text2{ 
+  font-size: 20px;
+  font-weight: 700;
+  color: #67b5ff;
+  text-align: center; 
+}
+.text3{
+  font-size: 18px;
+  font-weight: 700;
+  color: #67b5ff;
+  text-align: center;
+}
+.text4{
+  margin-top: 13px;
+  font-size: 13px;  
+  font-weight: 700;
+  text-align: center;
+}.text5{
+  font-size: 15px;  
+  font-weight: 700;
+  text-align: center;
+  padding: 1px 10px 10px 10px;
+}
+.button-login{
+  width: 100%;
+  height: 40px;
+}
+.welcome-text{
+  width: 1000px;
+  margin-left: -150px;
+  margin-right: 35px;
+}
+.text-welcome{
+  font-size:60px;
+  color:#fff;
+  font-weight: 700;
+  font-family: 'Source Sans Pro'
+}
+.text-danau-toba{
+  margin-top: -40px;
+  font-size:61px;
+  color:#fff;
+  font-weight: 700;
+  font-family: 'Source Sans Pro'
+}
+.text-deskripsi{
+  font-size:30px;
+  color:#fff;
+  font-weight: 600;
+  font-family: 'Source Sans Pro'
+}
+
