@@ -6,7 +6,7 @@
    <div v-else class="tourism-group">
      <div class="tourism-image">
        <banner-detail
-         :bannerImage="tourismDetail.tourismImage[0]"
+         :bannerImage="tourismDetail.tourismImage"
          :bannerName="tourismDetail.tourismName"
          :bannerLocation="tourismDetail.tourismLocation"
          :bannerContact="tourismDetail.tourismContact"

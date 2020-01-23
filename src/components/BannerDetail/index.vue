@@ -5,14 +5,14 @@
     <p class="content-title">
       {{bannerName}}
     </p>
-    <p class="content-location">
-      <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
-      {{bannerLocation}}
-    </p>
-    <p class="content-contact">
-      <img src="@/image/Icon/phone.png" alt="altText" class="caption_icon">
-      {{bannerContact}}
-    </p>
+    <div class="display-flex" style="justify-content: center">
+      <div><i class="fa fa-map-marker"></i></div>
+      <div>{{bannerLocation}}</div>
+    </div>
+    <div class="display-flex" style="justify-content: center">
+      <div @click="onClickWhatsApp"><i class="fa fa-whatsapp"></i></div>
+      <div>{{bannerContact}}</div>
+    </div>
   </div>
 </div>
 </template>
@@ -22,7 +22,7 @@ export default {
   name: 'BannerDetail',
   props: {
     bannerImage: {
-      type: String
+      type: Array
     },
     bannerName: {
       type: String
@@ -32,6 +32,12 @@ export default {
     },
     bannerContact: {
       type: String
+    }
+  },
+  methods: {
+    onClickWhatsApp () {
+      let message = this.chatMessage('makanan di restoran ' + this.bannerName)
+      this.startChat(this.bannerContact, message)
     }
   }
 }
@@ -45,9 +51,10 @@ export default {
     right: 0;
     top: 25%;
     width: 30%;
-    text-align: center;
+    /*text-align: center;*/
     background-color: #ffffffb8;
     z-index: 999;
+    padding-bottom: 1em;
   }
   .content-title {
     padding: 6px;

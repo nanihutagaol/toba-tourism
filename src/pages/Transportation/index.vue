@@ -1,9 +1,6 @@
 <template>
   <div class="culinary-by-admin">
     <banner-category bannerCaption="TRANSPORTASI" :bannerImage="bannerImage">
-      <div slot="left-banner">
-        <button-search/>
-      </div>
       <div slot="right-banner">
         <button class="btn toba-btn-success" @click="showCreateForm=true">
           <i class="fa fa-plus"></i> Tambah

@@ -71,6 +71,9 @@ export default {
     onSubmitRestaurant () {
       this.getRestaurants()
       this.onCloseModal()
+      setTimeout(function () {
+        location.reload();
+      }, 1000)
     },
     onViewDetail (restaurant) {
       this.$store.dispatch('getRestaurantDetail', restaurant)

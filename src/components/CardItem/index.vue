@@ -11,14 +11,16 @@
       <div class="card-title">
         <a :href="url">{{title}}</a>
       </div>
-      <div class="card-caption card-caption1">
-        <slot name="caption1"></slot>{{caption1}}
+      <div class="card-caption1">
+        <div>{{caption1}}</div>
       </div>
-      <div class="card-caption">
-        <slot name="caption2"></slot>{{caption2}}
+      <div class="card-caption2">
+        <div><slot name="caption2"></slot></div>
+        <div>{{caption2}}</div>
       </div>
-      <div class="card-caption">
-        <slot name="caption3"></slot>{{caption3}}
+      <div class="card-caption3">
+        <div><slot name="caption3"></slot></div>
+        <div>{{caption3}}</div>
       </div>
       <div class="card-button" v-if="isAdminMode">
         <button class="btn toba-btn-info" @click="onClickEdit">Edit</button>
@@ -100,13 +102,16 @@ export default {
     padding: 0.75em;
     line-height: 1.5em;
   }
-  .card-caption {
+  .card-caption2, .card-caption3 {
     font-size: 12px;
     line-height: 1.3em;
     text-align: justify;
     margin-bottom: 3px;
+    display: flex;
+    justify-content: left;
   }
   .card-caption1 {
+    font-size: 16px;
     text-align: center;
   }
   .card-button {
@@ -125,7 +130,6 @@ export default {
     top: 0px;
     background-color: white;
     filter: blur();
-    border: 1px solid #c7c7c7
   }
   img {
     cursor: pointer;

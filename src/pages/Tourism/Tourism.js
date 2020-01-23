@@ -67,6 +67,9 @@ export default {
     onSubmitTourism () {
       this.getTourism()
       this.onCloseModal()
+      setTimeout(function () {
+        location.reload();
+      }, 1000)
     },
     onViewDetail (tourism) {
       this.$store.dispatch('getTourismDetail', tourism)

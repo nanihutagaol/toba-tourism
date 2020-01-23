@@ -10,10 +10,10 @@
       @onClickImage="onClickImage"
     >
       <span slot="caption2">
-        <img src="@/image/Icon/home.png" alt="altText" class="caption_icon">
+        <i class="fa fa-home"></i>
       </span>
       <span slot="caption3">
-        <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
+        <i class="fa fa-map-marker"></i>
       </span>
     </card-item>
   </div>
