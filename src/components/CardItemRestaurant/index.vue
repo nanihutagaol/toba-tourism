@@ -12,10 +12,10 @@
       @onClickCamera="onClickCamera"
     >
       <span slot="caption2">
-        <img src="@/image/Icon/location.png" alt="altText" class="caption_icon">
+        <i class="fa fa-map-marker"></i>
       </span>
       <span slot="caption3">
-        <img src="@/image/Icon/phone.png" alt="altText" class="caption_icon">
+        <i class="fa fa-whatsapp" @click="onClickWhatsApp"></i>
       </span>
     </card-item>
   </div>
@@ -54,15 +54,15 @@ export default {
         restaurantImage: image
       }
       this.$emit('onClickCamera', restaurant)
+    },
+    onClickWhatsApp () {
+      let message = this.chatMessage('makanan di restoran ' + this.restaurant.restaurantName)
+      this.startChat(this.restaurant.restaurantContact, message)
     }
   }
 }
 </script>
 
 <style scoped>
-.caption_icon {
-  width: 25px;
-  height: 20px;
-  margin: 1px;
-}
+
 </style>

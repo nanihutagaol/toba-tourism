@@ -1,4 +1,7 @@
 import Axios from 'axios'
+const PROXY = 'http://192.168.43.140'
+const URL_API = 'http://192.168.43.140:9090/api'
+const LOCALHOST = 'localhost'
 
 export default {
   state: {
@@ -24,7 +27,7 @@ export default {
   actions: {
     getTransportationList ({commit}) {
       Axios
-      // .get('http://192.168.43.139:9090/api/transportation')
+        // .get(URL_API + '/transportation')
         .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation')
         .then(response => {
           console.log(response)
@@ -32,7 +35,7 @@ export default {
           response.data.data.forEach(transportation => {
             let images = []
             transportation.transportationImage.forEach(image => {
-              let temp = image.replace('localhost', 'http://192.168.43.139')
+              let temp = image.replace(LOCALHOST, PROXY)
               images.push(temp)
             })
             transportation.transportationImage = images
@@ -46,14 +49,14 @@ export default {
     getTransportationDetail ({commit}, transportationId) {
       console.log(transportationId)
       Axios
-      // .get('http://192.168.43.139:9090/api/transportation/' + transportationId)
+        // .get(URL_API + '/transportation/' + transportationId)
         .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation/detail')
         .then(response => {
           console.log(response)
           let transportation = response.data.data
           let images = []
           transportation.transportationImage.forEach(image => {
-            let temp = image.replace('localhost', 'http://192.168.43.139')
+            let temp = image.replace(LOCALHOST, PROXY)
             images.push(temp)
           })
           transportation.transportationImage = images
@@ -73,7 +76,7 @@ export default {
       formData.append('transportationContact', transportation.transportationContact)
 
       Axios
-        .post('http://192.168.43.139:9090/api/transportation', formData, {
+        .post(URL_API + '/transportation', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
@@ -91,7 +94,7 @@ export default {
       formData.append('transportationContact', transportation.transportationContact)
 
       Axios
-        .put('http://192.168.43.139:9090/api/transportation/' + transportation.transportationId, formData)
+        .put(URL_API + '/transportation/' + transportation.transportationId, formData)
         .then(response => {
           console.log('success')
         }).catch((e) => {
@@ -104,7 +107,7 @@ export default {
       formData.append('transportationImage', transportation.transportationImage)
 
       Axios
-        .put('http://192.168.43.139:9090/api/transportation/' + transportation.transportationId, formData)
+        .put(URL_API + '/transportation/' + transportation.transportationId, formData)
         .then(response => {
           console.log('success')
         }).catch((e) => {
@@ -114,7 +117,7 @@ export default {
     deleteTransportation ({commit, state}, transportationId) {
       console.log(transportationId)
       Axios
-        .delete('http://192.168.43.139:9090/api/transportation/' + transportationId)
+        .delete(URL_API + '/transportation/' + transportationId)
         .then(response => {
           if (response.data.status === 'OK') {
             console.log('bisa dong')

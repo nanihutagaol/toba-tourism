@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     onClickedSort (criteria) {
+      // console.log(criteria)
       let self = this
       criteria.isActive = true
 

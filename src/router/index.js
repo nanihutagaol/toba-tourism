@@ -23,6 +23,11 @@ export default new Router({
       component: () => import('@/pages/Register')
     },
     {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('@/pages/Profile')
+    },
+    {
       path: '/kuliner',
       name: 'KulinerCustomer',
       component: () => import('@/pages/culinary')

@@ -28,15 +28,14 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'restaurantList', 'culinaryFiltered', 'isCulinaryFilterActive'
+      'restaurantList', 'restaurantFiltered', 'isFilterActive', 'culinaryFiltered', 'isCulinaryFilterActive'
     ]),
-    filteredRestaurantList () {
-      // console.log(this.culinaryList)
-      // if (this.isFilterActive === true) {
-      //   return this.culinaryFiltered
-      // } else {
-      //   return this.culinaryList
-      // }
+    restaurants () {
+      if (this.isFilterActive === true) {
+        return this.restaurantFiltered
+      } else {
+        return this.restaurantList
+      }
     }
   },
   methods: {
@@ -47,41 +46,36 @@ export default {
       this.showImageView = true
       this.culinaryImage = image
     },
-    onFilterByName (selectedName) {
-      let restaurantList = [...this.restaurantList]
-      let filteredRestaurants = this.filterByRestaurantName(restaurantList, selectedName)
-      this.$store.dispatch('onsetRestaurantFiltered', filteredRestaurants)
-    },
-    filterByRestaurantName (restaurantList, selectedName) {
-      let out = [];
-
-      restaurantList.forEach(function (restaurant) {
-        selectedName.forEach(function (selected) {
-          if (selected && selected.isActive === true && selected.restaurantId === restaurant.restaurantId) {
-            out.push(restaurant);
-            return;
-          }
-        });
-      })
-
-      return out;
-    },
-    onSort(criteria) {
+    onClickedSort(criteria) {
       let restaurantList = []
       let sortedRestaurants = []
 
       if (this.isFilterActive === true) {
         restaurantList = [...this.restaurantFiltered]
+        console.log('active')
       } else {
         restaurantList = [...this.restaurantList]
+        console.log('false')
       }
 
       sortedRestaurants = this.doSortByCriteria(restaurantList, criteria)
 
-      console.log(sortedRestaurants)
-      this.$store.dispatch('onsetRestaurantFiltered', sortedRestaurants)
+      // console.log(sortedRestaurants)
+      // this.$store.dispatch('onSetRestaurantFiltered', sortedRestaurants)
     },
-    groupFoodList (restaurantsList) {
+    onFilterByName (selectedName) {
+      let restaurantList = [...this.restaurantList]
+      let filteredRestaurants = this.filterByRestaurantName(restaurantList, selectedName)
+      this.$store.dispatch('onSetRestaurantFiltered', filteredRestaurants)
+    },
+    filterByRestaurantName (restaurantList, selectedName) {
+      let out = []
+      selectedName.forEach(function (selected) {
+        if (selected.isActive === true) {
+          out.push(selected)
+        }
+      })
+      return out
     },
     doSortByCriteria (restaurantList, criteria) {
       let sorted = []
@@ -90,14 +84,19 @@ export default {
       } else if (criteria.param === 'price') {
         sorted = this.sortByPrice(restaurantList, criteria.type)
       }
+
+      console.log(sorted)
       return sorted;
     },
     sortByName (restaurantList, type) {
       return restaurantList.sort((a, b) => {
         if (type === 'asc')
           return a.foodName - b.foodName
-        else
+        else{
+          console.log(a)
+          console.log(b)
           return b.foodName - a.foodName
+        }
       })
     },
     sortByPrice (restaurantList, type) {

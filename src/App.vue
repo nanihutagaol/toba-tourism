@@ -91,6 +91,30 @@ export default {
   animation-name: animatebottom;
   animation-duration: 1.5s
 }
+.fa-map-marker, .fa-whatsapp, .fa-road, .fa-home {
+  font-size: 25px;
+  padding: 0 0.2em;
+}
+.fa-map-marker {
+  font-size: 30px;
+  color: #FF3D3D;
+  horiz-align: center;
+}
+.fa-whatsapp {
+  color: rgb(13, 193, 67);
+}
+.fa-whatsapp:hover{
+  cursor: pointer;
+}
+.fa-home {
+  font-size: 22px;
+  color: #336eff;
+}
+.display-flex {
+  display: flex;
+  justify-content: left;
+  text-align: justify;
+}
 
 @keyframes animatebottom {
   from{ bottom:-100px; opacity:0 }

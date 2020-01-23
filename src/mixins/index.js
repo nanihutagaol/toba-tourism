@@ -3,8 +3,6 @@ export default {
     return {
     }
   },
-  mounted () {
-  },
   methods: {
     currency (val) {
       let value = parseInt(val)
@@ -17,6 +15,12 @@ export default {
         }
       }
       return 'Rp ' + result.split('', result.length - 1).reverse().join('')
+    },
+    chatMessage (name) {
+      return 'Hi... Saya tertarik dengan ' + name + ' milik Anda. Boleh kita diskusi lebih lanjut tentang hal ini? Terimakasih'
+    },
+    startChat (contact, message) {
+      location.href = 'https://api.whatsapp.com/send?phone=' + contact + '&text=' + message
     }
   }
 }

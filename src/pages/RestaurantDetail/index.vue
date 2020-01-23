@@ -7,7 +7,7 @@
    <div v-else class="restaurant-group">
      <div class="restaurant-image">
        <banner-detail
-         :bannerImage="restaurantDetail.restaurantImage[0]"
+         :bannerImage="restaurantDetail.restaurantImage"
          :bannerName="restaurantDetail.restaurantName"
          :bannerLocation="restaurantDetail.restaurantLocation"
          :bannerContact="restaurantDetail.restaurantContact"
@@ -20,26 +20,41 @@
            <h2 style="text-align: left">List Kuliner</h2>
          </div>
          <div class="col-sm-3 right-kuliner-title">
-           <button class="btn toba-btn-success" @click="showCreateForm=true"><i class="fa fa-plus"></i> Tambah</button>
+           <button class="btn toba-btn-success" @click="showCreateForm=true"><i class="fa fa-plus"></i> Tambah </button>
          </div>
        </div>
        <hr>
 
        <div class="row kuliner-group">
-         <carousel :per-page="4" :speed="500" slidesToScroll="auto" :scrollPerPage="false">
-           <slide v-for="culinary in restaurantDetail.culinaryList" :key="culinary.culinaryId">
-             <card-item-restaurant-detail
-               class="list-kuliner"
-               :restaurant="restaurantDetail"
-               :culinary="culinary"
-               :isAdminMode="true"
-               @onClickEdit="onClickEdit"
-               @onClickDelete="onClickDelete"
-               @onClickImage="onClickImage"
-               @onClickCamera="onClickCamera"
-             />
-           </slide>
-         </carousel>
+           <div class="col-sm-3 food-cart animate-bottom" v-for="culinary in restaurantDetail.culinaryList" :key="culinary.culinaryId">
+             <div class="">
+               <card-item-restaurant-detail
+                  class="list-kuliner"
+                  :restaurant="restaurantDetail"
+                  :culinary="culinary"
+                  :isAdminMode="true"
+                  @onClickEdit="onClickEdit"
+                  @onClickDelete="onClickDelete"
+                  @onClickImage="onClickImage"
+                  @onClickCamera="onClickCamera"
+                />
+             </div>
+           </div>
+
+<!--         <carousel :per-page="4" :speed="500" slidesToScroll="auto" :scrollPerPage="false">-->
+<!--           <slide v-for="culinary in restaurantDetail.culinaryList" :key="culinary.culinaryId">-->
+<!--             <card-item-restaurant-detail-->
+<!--               class="list-kuliner"-->
+<!--               :restaurant="restaurantDetail"-->
+<!--               :culinary="culinary"-->
+<!--               :isAdminMode="true"-->
+<!--               @onClickEdit="onClickEdit"-->
+<!--               @onClickDelete="onClickDelete"-->
+<!--               @onClickImage="onClickImage"-->
+<!--               @onClickCamera="onClickCamera"-->
+<!--             />-->
+<!--           </slide>-->
+<!--         </carousel>-->
        </div>
      </div>
    </div>

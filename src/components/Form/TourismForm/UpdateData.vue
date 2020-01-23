@@ -1,7 +1,7 @@
 <template>
   <form class="tourism-form" @submit.prevent="validateForm" ref="form">
     <div class="form-group">
-      <div for="tourismName">Nama restoran</div>
+      <div for="tourismName">Nama Pariwisata</div>
       <input id="tourismName" class="form-control" v-model="tourism.tourismName" type="text" name="tourismName" required>
     </div>
 

@@ -1,4 +1,7 @@
 import Axios from 'axios'
+const PROXY = 'http://192.168.43.140'
+const URL_API = 'http://192.168.43.140:9090/api'
+const LOCALHOST = 'localhost'
 
 export default {
   state: {
@@ -41,14 +44,15 @@ export default {
   actions: {
     getRestaurantList ({commit}) {
       Axios
-        // .get('http://192.168.43.139:9090/api/restaurant')
+        // .get(URL_API + '/restaurant')
         .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant')
         .then(response => {
+          console.log(response)
           let out = []
           response.data.data.forEach(restaurant => {
             let images = []
             restaurant.restaurantImage.forEach(image => {
-              let temp = image.replace('localhost', 'http://192.168.43.139')
+              let temp = image.replace(LOCALHOST, PROXY)
               images.push(temp)
             })
             restaurant.restaurantImage = images
@@ -61,27 +65,31 @@ export default {
     },
     getRestaurantDetail ({commit}, restaurantId) {
       Axios
-        // .get('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
+        // .get(URL_API + '/restaurant/' + restaurantId)
         .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant/detail')
         .then(response => {
+          console.log(response)
           let restaurant = response.data.data
+          console.log(restaurant)
           let images = []
           restaurant.restaurantImage.forEach(image => {
-            let temp = image.replace('localhost', 'http://192.168.43.139')
+            let temp = image.replace(LOCALHOST, PROXY)
             images.push(temp)
           })
           restaurant.restaurantImage = images
 
           let culinaryList = []
-          restaurant.culinaryList.forEach(culinary => {
-            let imagesCulinary = []
-            culinary.culinaryImage.forEach(image => {
-              let temp = image.replace('localhost', 'http://192.168.43.139')
-              imagesCulinary.push(temp)
+          if (restaurant.culinaryList !== null) {
+            restaurant.culinaryList.forEach(culinary => {
+              let imagesCulinary = []
+              culinary.culinaryImage.forEach(image => {
+                let temp = image.replace(LOCALHOST, PROXY)
+                imagesCulinary.push(temp)
+              })
+              culinary.culinaryImage = imagesCulinary
+              culinaryList.push(culinary)
             })
-            culinary.culinaryImage = imagesCulinary
-            culinaryList.push(culinary)
-          })
+          }
           restaurant.culinaryList = culinaryList
 
           commit('setRestaurantDetail', restaurant)
@@ -99,7 +107,7 @@ export default {
       formData.append('restaurantContact', restaurant.restaurantContact)
 
       Axios
-        .post('http://192.168.43.139:9090/api/restaurant', formData, {
+        .post(URL_API + '/restaurant', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
@@ -116,7 +124,7 @@ export default {
       formData.append('restaurantContact', restaurant.restaurantContact)
 
       Axios
-        .put('http://192.168.43.139:9090/api/restaurant/' + restaurant.restaurantId, formData)
+        .put(URL_API + '/restaurant/' + restaurant.restaurantId, formData)
         .then(response => {
           console.log('success')
         }).catch((e) => {
@@ -129,7 +137,9 @@ export default {
       formData.append('restaurantImage', restaurant.restaurantImage)
 
       Axios
-        .put('http://192.168.43.139:9090/api/restaurant/' + restaurant.restaurantId, formData)
+        .put(URL_API + '/restaurant/image/' + restaurant.restaurantId, formData, {
+          headers: {'Content-Type': 'multipart/form-data'}
+        })
         .then(response => {
           console.log('success')
         }).catch((e) => {
@@ -139,7 +149,7 @@ export default {
     deleteRestaurant ({commit, state}, restaurantId) {
       console.log(restaurantId)
       Axios
-        .delete('http://192.168.43.139:9090/api/restaurant/' + restaurantId)
+        .delete(URL_API + '/restaurant/' + restaurantId)
         .then(response => {
           if (response.data.status === 'OK') {
             // commit('deleteRestaurant', restaurant)
@@ -149,10 +159,9 @@ export default {
           console.log(e)
         })
     },
-    onsetRestaurantFiltered ({commit}, restaurants) {
+    onSetRestaurantFiltered ({commit}, restaurants) {
       commit('setRestaurantFiltered', restaurants)
       commit('setIsFilterActive', true)
-      console.log('waw')
     },
     onSetIsFilterActive ({commit}) {
       commit('setIsFilterActive', true)
