@@ -41,7 +41,7 @@ export default {
   props: {
     collapsed: {
       type: Boolean,
-      default: false
+      default: true
     },
     useArrow: {
       type: Boolean,

@@ -1,10 +1,7 @@
 <template>
   <div class="card-item">
-    <div class="card-title">
-      <span style="color: #17a2b8"><a :href="url">{{tourism.tourismName}}</a></span>
-    </div>
     <div class="card-content row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div class="card-img">
           <div class="card-camera-icon" v-if="isAdminMode">
             <label for="cameraIcon"><i class="icon-select-image fa fa-camera"></i></label>
@@ -13,7 +10,10 @@
           <img :src="tourism.tourismImage[0]" @click="onClickImage">
         </div>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-9">
+        <div class="card-title">
+          <span style="color: #17a2b8"><a :href="url">{{tourism.tourismName}}</a></span>
+        </div>
         <p>
           {{tourismDescription}}
           <a :href="url" style="padding: 0.25em 1em" v-if="tourism.tourismDescription.length > 250">Baca lebih lanjut</a>
@@ -101,7 +101,7 @@ export default {
     background: #f8f9fa;
   }
   .card-title {
-    font-size: 32px;
+    font-size: 28px;
     font-family: "Times New Roman";
     font-weight: bold;
     color: cornflowerblue;
@@ -141,7 +141,7 @@ export default {
     padding: 0.25em;
   }
   .icon-select-image, .icon-update-image {
-    left: 35%;
+    left: 45%;
     top: 45%;
     padding: 0.5em;
     z-index: 10;

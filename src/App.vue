@@ -107,6 +107,7 @@ export default {
   cursor: pointer;
 }
 .fa-home {
+  font-size: 22px;
   color: #336eff;
 }
 .display-flex {

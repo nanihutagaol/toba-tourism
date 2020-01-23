@@ -159,10 +159,9 @@ export default {
           console.log(e)
         })
     },
-    onsetRestaurantFiltered ({commit}, restaurants) {
+    onSetRestaurantFiltered ({commit}, restaurants) {
       commit('setRestaurantFiltered', restaurants)
       commit('setIsFilterActive', true)
-      console.log('waw')
     },
     onSetIsFilterActive ({commit}) {
       commit('setIsFilterActive', true)

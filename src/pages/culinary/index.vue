@@ -12,11 +12,11 @@
         <div v-else class="culinary-row animate-bottom">
           <div class="row">
             <div class="col-sm-3">
-              <div style="margin-bottom: 1em">
-                <SortCulinary
-                  @onClickedSort="onSort"
-                />
-              </div>
+<!--              <div style="margin-bottom: 1em">-->
+<!--                <SortCulinary-->
+<!--                  @onClickedSort="onClickedSort"-->
+<!--                />-->
+<!--              </div>-->
               <div>
                 <FilterCulinary
                   :culinaryList="restaurantList"
@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-sm-9" >
-              <div class="" v-for="restaurant in restaurantList" :key="restaurant.restaurantId" >
+              <div class="" v-for="restaurant in restaurants" :key="restaurant.restaurantId" >
                 <div class="row food-cart" >
                   <div class="col-sm-4" v-for="culinary in restaurant.culinaryList" :key="culinary.culinaryId">
                     <CardItemCulinary
