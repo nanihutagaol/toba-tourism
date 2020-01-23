@@ -1,9 +1,6 @@
 <template>
   <div class="culinary-by-admin">
     <banner-category bannerCaption="Pariwisata" :bannerImage="bannerImage">
-      <div slot="left-banner">
-        <button-search/>
-      </div>
       <div slot="right-banner">
         <button class="btn toba-btn-success" @click="showCreateForm=true">
           <i class="fa fa-plus"></i> Tambah
@@ -22,7 +19,7 @@
             <div class="">
               <card-item-tourism
                 :tourism="tourism"
-                :isAdminMode="false"
+                :isAdminMode="true"
                 @onClickEdit="onClickEdit"
                 @onClickDelete="onClickDelete"
                 @onClickImage="onClickImage"

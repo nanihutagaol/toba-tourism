@@ -1,4 +1,7 @@
 import Axios from 'axios'
+const PROXY = 'http://192.168.43.140'
+const URL_API = 'http://192.168.43.140:9090/api'
+const LOCALHOST = 'localhost'
 
 export default {
   state: {
@@ -31,23 +34,23 @@ export default {
   actions: {
     getCulinaryList ({commit}) {
       Axios
-      // .get('http://192.168.43.139:9090/api/culinary')
+        // .get(URL_API + '/culinary')
         .get('http://www.amock.io/api/nanihutagao/toba-tourism/culinary')
         .then(response => {
           let out = []
           response.data.data.forEach(restaurant => {
             let imagesRestaurant = []
-
             restaurant.restaurantImage.forEach(image => {
-              let temp = image.replace('localhost', 'http://192.168.43.139')
+              let temp = image.replace(LOCALHOST, PROXY)
               imagesRestaurant.push(temp)
             })
             restaurant.restaurantImage = imagesRestaurant
+
             let culinaries = []
             restaurant.culinaryList.forEach(culinary => {
               let imagesCulinary = []
               culinary.culinaryImage.forEach(image => {
-                let temp = image.replace('localhost', 'http://192.168.43.139')
+                let temp = image.replace(LOCALHOST, PROXY)
                 imagesCulinary.push(temp)
               })
               culinary.culinaryImage = imagesCulinary
@@ -72,7 +75,7 @@ export default {
       formData.append('culinaryPrice', data.culinary.culinaryPrice)
 
       Axios
-        .post('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary', formData, {
+        .post(URL_API + '/restaurant/' + data.restaurantId + '/culinary', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {
@@ -88,7 +91,7 @@ export default {
       formData.append('culinaryPrice', data.culinary.culinaryPrice)
 
       Axios
-        .put('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
+        .put(URL_API + '/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
           'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
@@ -103,7 +106,7 @@ export default {
       formData.append('culinaryImage', data.culinary.culinaryImage)
 
       Axios
-        .put('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
+        .put(URL_API + '/restaurant/' + data.restaurantId + '/culinary/' + data.culinary.culinaryId, formData, {
           'headers': {'Content-Type': 'application/json'}
         })
         .then(response => {
@@ -115,7 +118,7 @@ export default {
     deleteCulinary ({commit, state}, data) {
       console.log(data)
       Axios
-        .delete('http://192.168.43.139:9090/api/restaurant/' + data.restaurantId + '/culinary/' + data.culinaryId)
+        .delete(URL_API + '/restaurant/' + data.restaurantId + '/culinary/' + data.culinaryId)
         .then(response => {
           if (response.data.status === 'OK') {
             // commit('deleteRestaurant', restaurant)

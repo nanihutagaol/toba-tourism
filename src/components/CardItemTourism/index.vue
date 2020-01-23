@@ -1,7 +1,7 @@
 <template>
   <div class="card-item">
     <div class="card-title">
-      <span style="color: #17a2b8">{{tourism.tourismName}}</span>
+      <span style="color: #17a2b8"><a :href="url">{{tourism.tourismName}}</a></span>
     </div>
     <div class="card-content row">
       <div class="col-sm-4">
@@ -18,10 +18,14 @@
           {{tourismDescription}}
           <a :href="url" style="padding: 0.25em 1em" v-if="tourism.tourismDescription.length > 250">Baca lebih lanjut</a>
         </p>
-        <p>
-          <span style="color: #fff; background: #17a2b8; padding: 0.1em 0.5em">Lokasi:</span> {{tourism.tourismLocation}}<br>
-          <span style="color: #fff; background: rgb(82, 132, 140); padding: 0.1em 0.5em">Kontak:</span> {{tourism.tourismContact}}
-        </p>
+        <div class="display-flex">
+          <div><i class="fa fa-map-marker"></i></div>
+          <div>{{tourism.tourismLocation}}</div>
+        </div>
+        <div class="display-flex">
+          <div @click="onClickWhatsApp"><i class="fa fa-whatsapp"></i></div>
+          <div>{{tourism.tourismContact}}</div>
+        </div>
         <div class="card-button" v-if="isAdminMode">
           <button class="btn toba-btn-info" @click="onClickEdit">Edit</button>
           <button class="btn toba-btn-danger" @click="onClickDelete">Hapus</button>
@@ -79,6 +83,10 @@ export default {
       if (image !== null && image !== undefined && image.type.match('image/*')) {
         this.onClickCamera(image)
       }
+    },
+    onClickWhatsApp () {
+      let message = this.chatMessage('objek wisata ' + this.tourism.tourismName)
+      this.startChat(this.tourism.tourismContact, message)
     }
   }
 }
@@ -119,7 +127,6 @@ export default {
     top: 0px;
     background-color: white;
     filter: blur();
-    border: 1px solid #c7c7c7;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     cursor: pointer;
   }

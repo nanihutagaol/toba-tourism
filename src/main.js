@@ -9,11 +9,11 @@ import BootstrapVue from 'bootstrap-vue'
 import FontAwesome from 'font-awesome/css/font-awesome.css'
 import mixins from './mixins'
 import config from '../config'
-import ShardsVue from 'shards-vue'
+// import ShardsVue from 'shards-vue'
 import VueCarousel from 'vue-carousel'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueResource from 'vue-resource'
-import 'shards-ui/dist/css/shards.css'
+// import 'shards-ui/dist/css/shards.css'
 
 Vue.use(VueResource)
 Vue.use(Bootstrap)
@@ -21,7 +21,7 @@ Vue.use(BootstrapVue)
 Vue.use(FontAwesome)
 Vue.mixin(mixins)
 Vue.use(VueCarousel)
-Vue.use(ShardsVue)
+// Vue.use(ShardsVue)
 window.config = config
 
 Vue.config.productionTip = false
