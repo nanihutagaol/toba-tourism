@@ -120,4 +120,8 @@ export default {
   from{ bottom:-100px; opacity:0 }
   to{ bottom:0; opacity:1 }
 }
+.btn {
+  /*height: 20px;*/
+  padding: 0.5em;
+}
 </style>

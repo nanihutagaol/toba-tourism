@@ -4,30 +4,43 @@
       <div class="login">
         <d-container class="dr-example-container">
           <d-row>
-            <div class="col-md-8 welcome-text">
+            <div class="col-md-9 welcome-text">
               <d-card-body>
-                <p class="text-welcome">Selamat Datang</p>
+                <p class="text-welcome" style="font-size: 40px; font-family: 'Comic Sans MS'">Selamat Datang di</p>
                 <p class="text-danau-toba">Wisata Danau Toba</p>
-                <p class="text-deskripsi">Wisata Danau Toba Wisata Danau Toba Wisata Danau Toba Wisata Danau Toba Wisata Danau Toba Wisata Danau Toba Wisata Danau Toba</p>
               </d-card-body>
             </div>
 
-            <d-card class="col-md-7 login-card">
+            <d-card class="col-md-6 login-card">
               <d-card-body>
                 <img alt="Login" src="@/image/login.png" class="image">
                 <p class="text3">MEMBER REGISTER</p>
-                <label class="sr-only" for="f1_Username"><p>Nama Lengkap</p></label>
-                <p><d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nama Lengkap" /></p>
-                <label class="sr-only" for="f1_Username"><p>Username</p></label>
-                <p><d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" /></p>
-                <label class="sr-only" for="f1_Username"><p>Nomor HP</p></label>
-                <p><d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nomor HP" /></p>
-                <label class="sr-only" for="f1_Username"><p>Email</p></label>
-                <p><d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="E-mail" /></p>
-                <label class="sr-only" for="f1_Password">Password</label>
-                <p><d-input id="f2_Password" class="mr-2" type="password" placeholder="Password" /></p>
-                <d-button pill theme="primary" class="button-login"><p class="text5">REGISTER</p></d-button>
-                <!-- <d-link href="#test"><p class="text4">Forgot Your Username or Password?</p></d-link> -->
+
+                <form class="register-form" @submit.prevent="validateForm" ref="form" >
+                  <div class="form-group">
+                    <input id="fullname" class="form-control" v-model="account.fullname" type="text" min="0" placeholder="Nama Lengkap" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="username" class="form-control" v-model="account.username" type="text" min="0" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="email" class="form-control" v-model="account.email" type="email" min="0" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="password" class="form-control" v-model="account.password" type="password" min="0" placeholder="Password" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="alamat" class="form-control" v-model="account.alamat" type="text" min="0" placeholder="Alamat" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="dob" class="form-control" v-model="account.dob" type="date" min="0" placeholder="Tanggal Lahir" required>
+                  </div>
+                  <div class="form-group">
+                    <input id="nohp" class="form-control" v-model="account.nohp" type="number" min="0" placeholder="No Handphone" required>
+                  </div>
+                  <p v-if="isAuthError===true" style="color: red;font-size: 14px">{{authMessageError}}</p>
+                  <d-button pill theme="primary" class="button-login" type="submit"><p class="text5">REGISTER</p></d-button>
+                </form>
               </d-card-body>
             </d-card>
           </d-row>

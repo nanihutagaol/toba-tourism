@@ -2,17 +2,17 @@
   <form class="culinary-form" @submit.prevent="validateForm" ref="form" >
     <div class="form-group">
       <div for="culinaryName">Nama Kuliner</div>
-      <input id="culinaryName" class="form-control" v-model="culinary.culinaryName" type="text" name="culinaryName">
+      <input id="culinaryName" class="form-control" v-model="culinary.culinaryName" type="text" name="culinaryName" required>
     </div>
 
     <div class="form-group">
       <div for="culinaryPrice">Harga</div>
-      <input id="culinaryPrice" class="form-control" v-model="culinary.culinaryPrice" type="number" name="culinaryPrice" min="0">
+      <input id="culinaryPrice" class="form-control" v-model="culinary.culinaryPrice" type="number" name="culinaryPrice" min="0" required>
     </div>
 
     <div class="form-group">
       <div for="culinaryImage">File Gambar</div>
-      <input id="culinaryImage" ref="myFiles" class="" @change="previewFiles" type="file" multiple >
+      <input id="culinaryImage" ref="myFiles" class="" @change="previewFiles" type="file" multiple required>
       <div style="font-size: 11px; color: #FF3D3D" v-if="isError">File harus dalam format 'image/*'</div>
     </div>
 

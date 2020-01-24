@@ -2,16 +2,16 @@
   <form class="culinary-form" @submit.prevent="validateForm" ref="form" >
     <div class="form-group">
       <div for="culinaryName">Nama Kuliner</div>
-      <input id="culinaryName" class="form-control" v-model="culinary.culinaryName" type="text" name="culinaryName">
+      <input id="culinaryName" class="form-control" v-model="culinary.culinaryName" type="text" name="culinaryName" required>
     </div>
 
     <div class="form-group">
       <div for="culinaryPrice">Harga</div>
-      <input id="culinaryPrice" class="form-control" v-model="culinary.culinaryPrice" type="number" name="culinaryPrice" min="0">
+      <input id="culinaryPrice" class="form-control" v-model="culinary.culinaryPrice" type="number" name="culinaryPrice" min="0" required>
     </div>
 
     <div class="form-group" style="margin-bottom: 0">
-      <input class="form-control btn toba-btn-success" type="submit"  value="Ubah">
+      <input class="form-control btn toba-btn-success" type="submit"  value="Ubah" >
     </div>
   </form>
 </template>

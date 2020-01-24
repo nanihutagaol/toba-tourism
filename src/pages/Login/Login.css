@@ -1,6 +1,6 @@
 .background{
   padding-bottom: 10px;
-  background-image: url("../../image/Danau.jpeg");
+  background: url("../../image/Danau.jpeg") no-repeat 50% fixed;
   background-size: cover;
   margin-bottom: -70px;
 }
@@ -35,13 +35,13 @@
 .text1{
   font-size: 30px;
   font-weight: 700;
-  text-align: center; 
+  text-align: center;
 }
-.text2{ 
+.text2{
   font-size: 20px;
   font-weight: 700;
   color: #67b5ff;
-  text-align: center; 
+  text-align: center;
 }
 .text3{
   font-size: 18px;
@@ -51,11 +51,11 @@
 }
 .text4{
   margin-top: 13px;
-  font-size: 13px;  
+  font-size: 13px;
   font-weight: 700;
   text-align: center;
 }.text5{
-  font-size: 15px;  
+  font-size: 15px;
   font-weight: 700;
   text-align: center;
   padding: 1px 10px 10px 10px;

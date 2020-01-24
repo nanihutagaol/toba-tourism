@@ -1,6 +1,6 @@
 import Axios from 'axios'
-const PROXY = 'http://192.168.43.140'
-const URL_API = 'http://192.168.43.140:9090/api'
+const PROXY = 'http://192.168.43.139'
+const URL_API = PROXY + ':9090/api'
 const LOCALHOST = 'localhost'
 
 export default {
@@ -44,8 +44,8 @@ export default {
   actions: {
     getRestaurantList ({commit}) {
       Axios
-        // .get(URL_API + '/restaurant')
-        .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant')
+        .get(URL_API + '/restaurant')
+        // .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant')
         .then(response => {
           console.log(response)
           let out = []
@@ -65,8 +65,8 @@ export default {
     },
     getRestaurantDetail ({commit}, restaurantId) {
       Axios
-        // .get(URL_API + '/restaurant/' + restaurantId)
-        .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant/detail')
+        .get(URL_API + '/restaurant/' + restaurantId)
+        // .get('http://www.amock.io/api/nanihutagao/toba-tourism/restaurant/detail')
         .then(response => {
           console.log(response)
           let restaurant = response.data.data
@@ -137,7 +137,7 @@ export default {
       formData.append('restaurantImage', restaurant.restaurantImage)
 
       Axios
-        .put(URL_API + '/restaurant/image/' + restaurant.restaurantId, formData, {
+        .post(URL_API + '/restaurant/image/' + restaurant.restaurantId, formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
         .then(response => {

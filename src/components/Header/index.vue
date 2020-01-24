@@ -37,7 +37,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register">
-              <button class="btn btn-info btn-daftar" type="submit">
+              <button class="btn toba-btn-info  btn-daftar" style="padding: 5px" type="submit">
                 Daftar
               </button>
             </a>

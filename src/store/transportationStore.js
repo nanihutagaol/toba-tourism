@@ -1,6 +1,6 @@
 import Axios from 'axios'
-const PROXY = 'http://192.168.43.140'
-const URL_API = 'http://192.168.43.140:9090/api'
+const PROXY = 'http://192.168.43.139'
+const URL_API = PROXY + ':9090/api'
 const LOCALHOST = 'localhost'
 
 export default {
@@ -27,8 +27,8 @@ export default {
   actions: {
     getTransportationList ({commit}) {
       Axios
-        // .get(URL_API + '/transportation')
-        .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation')
+        .get(URL_API + '/transportation')
+        // .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation')
         .then(response => {
           console.log(response)
           let out = []
@@ -49,8 +49,8 @@ export default {
     getTransportationDetail ({commit}, transportationId) {
       console.log(transportationId)
       Axios
-        // .get(URL_API + '/transportation/' + transportationId)
-        .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation/detail')
+        .get(URL_API + '/transportation/' + transportationId)
+        // .get('http://www.amock.io/api/nanihutagao/toba-tourism/transportation/detail')
         .then(response => {
           console.log(response)
           let transportation = response.data.data
@@ -107,7 +107,7 @@ export default {
       formData.append('transportationImage', transportation.transportationImage)
 
       Axios
-        .put(URL_API + '/transportation/' + transportation.transportationId, formData)
+        .post(URL_API + '/transportation/image/' + transportation.transportationId, formData)
         .then(response => {
           console.log('success')
         }).catch((e) => {

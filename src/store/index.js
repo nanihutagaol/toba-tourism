@@ -5,6 +5,7 @@ import restaurantStore from '@/store/restaurantStore'
 import culinaryStore from '@/store/culinaryStore'
 import tourismStore from '@/store/tourismStore'
 import transportationStore from '@/store/transportationStore'
+import userStore from '@/store/userStore'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     restaurantStore,
     culinaryStore,
     tourismStore,
-    transportationStore
+    transportationStore,
+    userStore
   }
 })

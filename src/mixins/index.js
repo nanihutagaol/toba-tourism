@@ -3,6 +3,9 @@ export default {
     return {
     }
   },
+  created () {
+    console.log(document.cookie())
+  },
   methods: {
     currency (val) {
       let value = parseInt(val)
